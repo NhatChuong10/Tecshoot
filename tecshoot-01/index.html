@@ -1,0 +1,1345 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tecshoot — Nền tảng nhiếp ảnh chuyên nghiệp</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="mainNav">
+ <!-- BẠN THAY DÒNG LOGO CŨ BẰNG DÒNG NÀY -->
+<a href="#" class="nav-logo"><span style="margin-right: 8px;">📸</span>Tec<span>shoot</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#services">Dịch vụ bổ trợ</a></li>
+    <li><a href="#photographers">Nhiếp ảnh gia</a></li>
+    <li><a href="photographer-dashboard.html">Dành cho thợ chụp</a></li>
+    <li><a href="javascript:void(0)" id="bookingNavLink" onclick="handleBookingClick()">Đặt lịch (Vui lòng đăng nhập)</a></li>
+    <li><a href="#about">Về chúng tôi</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <div class="nav-cta" id="navCtaGuest">
+    <button class="btn-ghost" onclick="openModal('loginModal')">Đăng nhập</button>
+    <a href="#" class="btn-primary">Đăng ký</a>
+  </div>
+  <div class="nav-cta" id="navCtaUser" style="display: none;">
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <div style="width: 32px; height: 32px; background: var(--accent); color: #0a0a0a; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; cursor: pointer;" onclick="window.location.href='photographer-dashboard.html'">HT</div>
+      <div style="font-size: 13px; font-weight: 500; color: var(--army); cursor: pointer;" onclick="window.location.href='photographer-dashboard.html'">Hiếu Thu Hải</div>
+      <button class="btn-ghost" onclick="handleLogout()">Đăng xuất</button>
+    </div>
+  </div>
+</nav>
+
+<!-- LANDING CONTENT WRAPPER -->
+<div id="landingContent">
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+
+ <div class="hero-images">
+  <div class="hero-img-card">
+    <div class="photo-placeholder">
+      <img src="images/HN/tu_ca_nhan/avatar_8_anh_1.jpg" alt="Ảnh mẫu cá nhân" class="hero-photo">
+    </div>
+  </div>
+  
+  <div class="hero-img-card">
+    <div class="photo-placeholder">
+      <img src="images/TPHCM/35_MM/avatar_3_anh_2.jpg" alt="Ảnh mẫu couple" class="hero-photo">
+    </div>
+  </div>
+  
+  <div class="hero-img-card">
+    <div class="photo-placeholder">
+      <img src="images/DN/Hieuthuhai/gia_dinh_1/avatar_1_anh_4.jpg" alt="Ảnh mẫu gia đình" class="hero-photo">
+    </div>
+  </div>
+  
+  <div class="hero-img-card">
+    <div class="photo-placeholder">
+      <img src="images/DN/Noemie_ca_nhan/bo_2/avatar_2_anh_7.jpg" alt="Ảnh mẫu sự kiện" class="hero-photo">
+    </div>
+  </div>
+  
+  <div class="hero-img-card">
+    <div class="photo-placeholder">
+      <img src="images/HN/Misthy/HSSV/avatar_7_anh_6.jpg" alt="Ảnh mẫu kỷ yếu" class="hero-photo">
+    </div>
+  </div>
+</div>
+
+  <div class="hero-tag">Nền tảng nhiếp ảnh chuyên nghiệp</div>
+
+  <h1 class="hero-title">
+    Khoảnh khắc<br><em>đáng nhớ</em><br>xứng tầm.
+  </h1>
+
+<p class="hero-subtitle">
+  Kết nối với nhiếp ảnh gia tài năng, tùy chỉnh từng buổi chụp, nhận ảnh hoàn hảo - Việc của bạn là thoải mái trong cả buổi chụp.
+</p>
+
+  <div class="hero-actions">
+    <button class="btn-large" onclick="handleBookingClick()">Tìm nhiếp ảnh gia</button>
+    <a href="photographer-dashboard.html" class="btn-outline-large">Dành cho thợ chụp →</a>
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="stat-num">340+</div>
+      <div class="stat-label">Nhiếp ảnh gia</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">12k</div>
+      <div class="stat-label">Buổi chụp thành công</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">4.9★</div>
+      <div class="stat-label">Đánh giá trung bình</div>
+    </div>
+  </div>
+</section>
+
+<!-- SEARCH BAR -->
+<section id="search">
+  <div class="search-container">
+    <div class="search-field">
+      <label>Khu vực</label>
+      <select>
+        <option>Hà Nội</option>
+        <option>TP. Hồ Chí Minh</option>
+        <option>Đà Nẵng</option>
+
+      </select>
+    </div>
+    <div class="search-field">
+      <label>Loại hình</label>
+      <select>
+        <option>Tất cả</option>
+        <option>Cá nhân</option>
+        <option>Cặp đôi</option>
+        <option>Gia đình</option>
+        <option>Nhóm</option>
+        <option>HSSV</option>
+        <option>Sự kiện</option>
+      </select>
+    </div>
+    <div class="search-field">
+      <label>Phong cách</label>
+      <select>
+        <option>Tất cả</option>
+        <option>Film / Analog</option>
+        <option>Editorial</option>
+        <option>Lifestyle</option>
+        <option>Fine Art</option>
+        <option>Documentary</option>
+      </select>
+    </div>
+    <div class="search-field">
+      <label>Mức giá (VNĐ)</label>
+      <select>
+        <option>Tất cả</option>
+        <option>Dưới 1 triệu</option>
+        <option>1 – 3 triệu</option>
+        <option>3 – 5 triệu</option>
+        <option>Trên 5 triệu</option>
+      </select>
+    </div>
+    <button class="search-btn">🔍 Tìm kiếm</button>
+  </div>
+</section>
+
+<!-- PHOTOGRAPHERS -->
+<section id="photographers">
+  <div class="section-header reveal">
+    <div>
+      <div class="section-eyebrow">Khám phá</div>
+      <h2 class="section-title">Nhiếp ảnh gia<br><em>nổi bật</em></h2>
+    </div>
+    <a href="#" class="view-all">Xem tất cả →</a>
+  </div>
+
+<div class="photographers-grid reveal">
+  <!-- Card 1: Nguyễn Minh Khoa -->
+  <div class="photographer-card featured" onclick="handleBookingClick('Hiếu Thứ Hai', 2800000)">
+    <div class="card-photo">
+      <img src="images/DN/Hieuthuhai/avatar_1.jpg" alt="Hiếu Thứ Hai" class="photographer-img" style="object-position: top;">
+      <div class="card-badge">⭐ Top Pick</div>
+    </div>
+    <div class="card-info">
+      <div class="card-name">Hiếu Thứ Hai</div>
+      <div class="card-specialty">EDITORIAL · FINE ART · PORTRAIT</div>
+      <div class="card-meta">
+        <div class="card-price">từ <strong>2.800.000</strong> đ</div>
+        <div class="card-rating"><span class="stars">★★★★★</span> 4.98 (127)</div>
+      </div>
+      <div class="card-tags">
+        <span class="tag">Hà Nội</span>
+        <span class="tag">Film Look</span>
+        <span class="tag">Concept</span>
+        <span class="tag">Cưới</span>
+      </div>
+      <div class="storage-bar-wrap" style="margin-top:14px">
+        <div style="font-size:10px;color:var(--muted);font-family:'DM Mono',monospace;margin-bottom:6px">Lịch tháng này: 3 slot còn trống</div>
+        <div class="storage-bar-track">
+          <div class="storage-bar-fill" style="width:75%"></div>
+        </div>
+        <div class="storage-meta"><span>Đã đặt 9/12</span><span>75%</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card 2: Misthy -->
+  <div class="photographer-card" onclick="handleBookingClick('Misthy', 1500000)">
+    <div class="card-photo">
+      <img src="images/HN/Misthy/avatar_7.jpg" alt="Trần Anh Tú" class="photographer-img">
+      <div class="card-badge badge-new">Mới</div>
+    </div>
+    <div class="card-info">
+      <div class="card-name">Misthy</div>
+      <div class="card-specialty">LIFESTYLE · OUTDOOR</div>
+      <div class="card-meta">
+        <div class="card-price">từ <strong>1.500.000</strong> đ</div>
+        <div class="card-rating"><span class="stars">★★★★★</span> 4.95</div>
+      </div>
+      <div class="card-tags">
+        <span class="tag">TP.HCM</span>
+        <span class="tag">Natural Light</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card 3: Tư Cute -->
+  <div class="photographer-card" onclick="handleBookingClick('Tư Cute', 2200000)">
+    <div class="card-photo">
+      <img src="images/HN/tu_ca_nhan/avatar_8.jpg" alt="Lê Thu Hà" class="photographer-img">
+    </div>
+    <div class="card-info">
+      <div class="card-name">Tư Cute</div>
+      <div class="card-specialty">FAMILY · MATERNITY</div>
+      <div class="card-meta">
+        <div class="card-price">từ <strong>2.200.000</strong> đ</div>
+        <div class="card-rating"><span class="stars">★★★★★</span> 4.92</div>
+      </div>
+      <div class="card-tags">
+        <span class="tag">Hà Nội</span>
+        <span class="tag">Studio</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card 4: 35 MM -->
+  <div class="photographer-card" onclick="handleBookingClick('35 MM', 3500000)">
+    <div class="card-photo">
+      <img src="images/TPHCM/35_MM/avatar_3.jpg" alt="Phạm Đức Hùng" class="photographer-img">
+    </div>
+    <div class="card-info">
+      <div class="card-name">35 MM</div>
+      <div class="card-specialty">PRODUCT · COMMERCIAL</div>
+      <div class="card-meta">
+        <div class="card-price">từ <strong>3.500.000</strong> đ</div>
+        <div class="card-rating"><span class="stars">★★★★★</span> 4.88</div>
+      </div>
+      <div class="card-tags">
+        <span class="tag">Đà Nẵng</span>
+        <span class="tag">E-commerce</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card 5: Anh Độ Mixi -->
+  <div class="photographer-card" onclick="handleBookingClick('Anh Độ Mixi', 4000000)">
+    <div class="card-photo">
+      <img src="images/TPHCM/do_mixi/avatar_5.jpg" alt="Anh Độ Mixi" class="photographer-img">
+    </div>
+    <div class="card-info">
+      <div class="card-name">Anh Độ Mixi</div>
+      <div class="card-specialty">WEDDING · DOCUMENTARY</div>
+      <div class="card-meta">
+        <div class="card-price">từ <strong>4.000.000</strong> đ</div>
+        <div class="card-rating"><span class="stars">★★★★★</span> 5.0</div>
+      </div>
+      <div class="card-tags">
+        <span class="tag">Hội An</span>
+        <span class="tag">Cinematic</span>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+  <section id="services" style="padding: 100px 60px; background: var(--bg2);">
+  <div class="section-header reveal">
+    <div>
+      <div class="section-eyebrow">Dịch vụ từ Tecshoot</div>
+      <h2 class="section-title">Hỗ trợ trọn gói<br><em>cho buổi chụp</em></h2>
+      <p class="mt-20 max-w-340 text-muted-13">Chúng tôi cung cấp hệ sinh thái ekip chuyên nghiệp đi kèm, giúp bạn và nhiếp ảnh gia tạo ra tác phẩm hoàn hảo nhất.</p>
+    </div>
+  </div>
+
+  <div class="pricing-grid reveal">
+
+    <div class="pricing-card">
+      <div class="plan-name">Gói Chụp Ảnh</div>
+      <div class="plan-price" style="font-size: 32px;"><sup>đ</sup>700k</div>
+      <div class="plan-duration">Giá khởi điểm</div>
+      <ul class="plan-features">
+        <li><strong>Cá nhân:</strong> 700.000đ</li>
+        <li><strong>Cặp đôi (Couple):</strong> 1.200.000đ</li>
+        <li><strong>Gia đình:</strong> 2.000.000đ (≤ 4 người)</li>
+      </ul>
+    </div>
+
+    <div class="pricing-card">
+      <div class="plan-name">Trang Điểm & Làm Tóc</div>
+      <div class="plan-price" style="font-size: 32px;"><sup>đ</sup>300k</div>
+      <div class="plan-duration">/ người</div>
+      <ul class="plan-features">
+        <li><strong>Gói HSSV:</strong> 300.000đ (Hỗ trợ làm tóc cơ bản)</li>
+        <li><strong>Gói Cao Cấp:</strong> 1.000.000đ (Mỹ phẩm High-end, dặm nền, take care suốt buổi chụp)</li>
+      </ul>
+    </div>
+
+    <div class="pricing-card featured-plan">
+      <div class="popular-badge">Đa dạng mẫu mã</div>
+      <div class="plan-name">Thuê Trang Phục</div>
+      <div class="plan-price" style="font-size: 32px;"><sup>đ</sup>100k</div>
+      <div class="plan-duration">/ bộ / ngày</div>
+      <ul class="plan-features">
+        <li><strong>Đồ cơ bản:</strong> 100.000đ</li>
+        <li><strong>Đầm dạ hội, đầm lụa:</strong> 200.000đ</li>
+        <li style="color: var(--persimmon); font-size: 11px; margin-top: 8px; line-height: 1.5; align-items: flex-start;">
+          <span style="margin-top: -2px;">*</span> Lưu ý: Cọc 500k/sản phẩm. Vui lòng đến trực tiếp công ty để thử đồ ưng ý.
+        </li>
+      </ul>
+    </div>
+
+    <div class="pricing-card">
+      <div class="plan-name">Quay Clip (BTS / TikTok)</div>
+      <div class="plan-price" style="font-size: 32px;"><sup>đ</sup>100k</div>
+      <div class="plan-duration">/ buổi</div>
+      <ul class="plan-features">
+        <li><strong>Basic (Điện thoại):</strong> 100k - 300k (Giao file gốc / cắt ghép đơn giản)</li>
+        <li><strong>Pro (Máy ảnh):</strong> 500k - 1.500k (Chất lượng cao, xóa phông, dựng hoàn chỉnh)</li>
+      </ul>
+    </div>
+
+    <div class="pricing-card">
+      <div class="plan-name">Studio & Không Gian</div>
+      <div class="plan-price" style="font-size: 32px;"><sup>đ</sup>50k</div>
+      <div class="plan-duration">Giá khởi điểm</div>
+      <ul class="plan-features">
+        <li><strong>Thuê phòng Studio:</strong> 50.000đ / phòng</li>
+        <li><strong>Đạo cụ nhỏ có sẵn:</strong> Miễn phí hoặc 50.000đ</li>
+        <li><strong>Hoa tươi / Đạo cụ lớn:</strong> 200k - 500k</li>
+        <li><strong>Trang trí Background:</strong> 100k - 500k (Trao đổi trực tiếp)</li>
+      </ul>
+    </div>
+
+    <div class="pricing-card">
+      <div class="plan-name">In Album Photobook</div>
+      <div class="plan-price" style="font-size: 32px;"><sup>đ</sup>274k</div>
+      <div class="plan-duration">Đã bao gồm bìa</div>
+      <ul class="plan-features">
+        <li><strong>Khổ nhỏ (20x30 / 25x25):</strong> Từ 274k (10 trang)</li>
+        <li><strong>Khổ trung (25x35 / 30x30):</strong> Từ 679k (20 trang)</li>
+        <li><strong>Khổ lớn (30x40 / 35x35):</strong> Từ 459k đến 1.254k</li>
+        <li style="font-size: 11px; margin-top: 8px; line-height: 1.5; align-items: flex-start;">
+          <span style="margin-top: -2px;">*</span> Chưa gồm phí thiết kế. Có tùy chọn thêm trang (45k - 75k/layout).
+        </li>
+      </ul>
+    </div>
+
+ 
+</section>
+  
+<!-- BOOKING FLOW -->
+<section id="booking-flow">
+  <div class="section-header reveal">
+    <div>
+      <div class="section-eyebrow">Quy trình</div>
+      <h2 class="section-title">Đặt lịch<br><em>dễ dàng</em></h2>
+    </div>
+  </div>
+
+  <div class="flow-steps reveal">
+    <div class="flow-step">
+      <div class="step-num">01</div>
+      <div class="step-icon">🔍</div>
+      <div class="step-title">Khám phá & Chọn thợ</div>
+      <div class="step-desc">Lọc theo khu vực, phong cách, mức giá. Xem portfolio, đánh giá thực từ khách hàng và lịch trống theo thời gian thực.</div>
+    </div>
+    <div class="flow-step">
+      <div class="step-num">02</div>
+      <div class="step-icon">⚙️</div>
+      <div class="step-title">Cấu hình & Thanh toán</div>
+      <div class="step-desc">Chọn gói chụp, thêm Add-ons (Makeup, Studio, In ấn...). Thanh toán cọc 50% hoặc toàn bộ qua MoMo / thẻ ngân hàng.</div>
+    </div>
+    <div class="flow-step">
+      <div class="step-num">03</div>
+      <div class="step-icon">🖼️</div>
+      <div class="step-title">Nhận & Chọn ảnh</div>
+      <div class="step-desc">Theo dõi tiến độ thời gian thực. Nhận link Gallery, chọn ảnh yêu thích, ghim ghi chú retouch chi tiết và tải ảnh hoàn chỉnh.</div>
+    </div>
+  </div>
+</section>
+
+<!-- TRACKER & GALLERY -->
+<section id="tracker">
+  <div class="section-header reveal">
+    <div>
+      <div class="section-eyebrow">Quản lý Booking</div>
+      <h2 class="section-title">Theo dõi tiến độ<br><em>trực tiếp</em></h2>
+    </div>
+  </div>
+
+  <div class="tracker-demo reveal">
+    <div class="tracker-header">
+      <div class="booking-ref">
+        Mã đặt lịch
+        <strong>#TSH-20240825-0042</strong>
+      </div>
+      <div style="font-size:13px;color:var(--muted)">Nhiếp ảnh gia: <span style="color:var(--text)">Nguyễn Minh Khoa</span></div>
+    </div>
+
+    <!-- Status Bar -->
+    <div class="status-bar">
+      <div class="status-step done">
+        <div class="status-dot">✓</div>
+        <div class="status-line"></div>
+        <div class="status-label">Chờ chụp</div>
+      </div>
+      <div class="status-step done">
+        <div class="status-dot">✓</div>
+        <div class="status-line"></div>
+        <div class="status-label">Đã chụp</div>
+      </div>
+      <div class="status-step done">
+        <div class="status-dot">✓</div>
+        <div class="status-line"></div>
+        <div class="status-label">Đang xử lý</div>
+      </div>
+      <div class="status-step active">
+        <div class="status-dot">📌</div>
+        <div class="status-line"></div>
+        <div class="status-label">Chọn ảnh</div>
+      </div>
+      <div class="status-step pending">
+        <div class="status-dot">—</div>
+        <div class="status-line"></div>
+        <div class="status-label">Đang Retouch</div>
+      </div>
+      <div class="status-step pending">
+        <div class="status-dot">—</div>
+        <div class="status-label">Hoàn tất</div>
+      </div>
+    </div>
+
+    <!-- Gallery preview -->
+    <div style="margin-top:28px;font-size:12px;color:var(--muted);font-family:'DM Mono',monospace;margin-bottom:12px">
+      Gallery ảnh gốc — Chọn ảnh yêu thích (12/48 ảnh theo gói)
+    </div>
+    <div class="gallery-preview" id="galleryGrid"></div>
+
+    <!-- Pin comment demo -->
+    <div class="pin-comment-demo" style="margin-top:24px">
+      <div class="pin-thumb">📷</div>
+      <div class="pin-form">
+        <h4>📌 Ghi chú retouch cho ảnh <span>#TSH-007</span></h4>
+        <div class="request-chips">
+          <div class="request-chip active">Bóp dáng</div>
+          <div class="request-chip">Xóa rác nền</div>
+          <div class="request-chip">Chỉnh sáng</div>
+          <div class="request-chip">Làm mịn da</div>
+          <div class="request-chip">Tăng màu preset</div>
+          <div class="request-chip">Xóa bóng mặt</div>
+        </div>
+        <div class="pin-warning">
+          ⚠️ Vui lòng chọn yêu cầu cụ thể từ danh sách trên. Hệ thống không chấp nhận ghi chú chung chung như <em>"chỉnh đẹp lên"</em> để đảm bảo chất lượng retouch đúng mong đợi.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHOTOGRAPHER DASHBOARD -->
+<section id="dashboard">
+  <div class="section-header reveal">
+    <div>
+      <div class="section-eyebrow">Dành cho Nhiếp ảnh gia</div>
+      <h2 class="section-title">Dashboard<br><em>chuyên nghiệp</em></h2>
+    </div>
+  </div>
+
+  <div class="dashboard-layout reveal">
+    <div class="dash-sidebar">
+      <div class="dash-logo">Tec<span>shoot</span></div>
+      <div class="dash-nav">
+        <div class="dash-nav-item active"><span class="dash-nav-icon">📊</span> Dashboard</div>
+        <div class="dash-nav-item"><span class="dash-nav-icon">📅</span> Lịch làm việc</div>
+        <div class="dash-nav-item"><span class="dash-nav-icon">💼</span> Công việc</div>
+        <div class="dash-nav-item"><span class="dash-nav-icon">☁️</span> Upload Center</div>
+        <div class="dash-nav-item"><span class="dash-nav-icon">💬</span> Tin nhắn</div>
+        <div class="dash-nav-item"><span class="dash-nav-icon">📈</span> Doanh thu</div>
+        <div class="dash-nav-item"><span class="dash-nav-icon">⚙️</span> Hồ sơ</div>
+      </div>
+      <!-- Storage bar in sidebar -->
+      <div style="padding:20px 24px;border-top:1px solid var(--border);margin-top:auto">
+        <div style="font-size:10px;color:var(--muted);font-family:'DM Mono',monospace;margin-bottom:8px">DUNG LƯỢNG</div>
+        <div class="storage-bar-track">
+          <div class="storage-bar-fill" style="width:42%"></div>
+        </div>
+        <div class="storage-meta"><span>2.1 GB / 5 GB</span><span>42%</span></div>
+      </div>
+    </div>
+
+    <div class="dash-main">
+      <div class="dash-greeting">
+        <p>Chào buổi sáng,</p>
+        <h2>Nguyễn Minh Khoa ✦</h2>
+      </div>
+
+      <div class="dash-cards">
+        <div class="dash-card">
+          <div class="dash-card-label">Doanh thu tháng này</div>
+          <div class="dash-card-value">14.2M</div>
+          <div class="dash-card-sub">+18% so với tháng trước</div>
+        </div>
+        <div class="dash-card">
+          <div class="dash-card-label">Công việc đang xử lý</div>
+          <div class="dash-card-value">3</div>
+          <div class="dash-card-sub">1 chờ upload ảnh</div>
+        </div>
+        <div class="dash-card">
+          <div class="dash-card-label">Đánh giá trung bình</div>
+          <div class="dash-card-value">4.98</div>
+          <div class="dash-card-sub">127 lượt đánh giá</div>
+        </div>
+      </div>
+
+      <table class="dash-jobs-table">
+        <thead>
+          <tr>
+            <th>Khách hàng</th>
+            <th>Loại hình</th>
+            <th>Ngày</th>
+            <th>Trạng thái</th>
+            <th>Giá trị</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Linh Nguyễn</td>
+            <td style="color:var(--muted);font-size:12px">Portrait / Cá nhân</td>
+            <td style="font-family:'DM Mono',monospace;font-size:12px;color:var(--muted)">28/08</td>
+            <td><span class="job-status-badge upcoming">Sắp diễn ra</span></td>
+            <td style="color:var(--accent)">2.800.000đ</td>
+          </tr>
+          <tr>
+            <td>Gia đình Phúc</td>
+            <td style="color:var(--muted);font-size:12px">Gia đình</td>
+            <td style="font-family:'DM Mono',monospace;font-size:12px;color:var(--muted)">25/08</td>
+            <td><span class="job-status-badge processing">Đang retouch</span></td>
+            <td style="color:var(--accent)">4.200.000đ</td>
+          </tr>
+          <tr>
+            <td>Minh Trang</td>
+            <td style="color:var(--muted);font-size:12px">Pre-wedding</td>
+            <td style="font-family:'DM Mono',monospace;font-size:12px;color:var(--muted)">20/08</td>
+            <td><span class="job-status-badge done">Hoàn tất</span></td>
+            <td style="color:var(--accent)">7.500.000đ</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- CONTEST -->
+<section id="contest">
+  <div class="contest-bg"></div>
+  <div class="contest-grid">
+    <div>
+      <div class="section-eyebrow">Photo of the Month</div>
+      <h2 class="section-title">Cuộc thi<br><em>ảnh nghệ thuật</em></h2>
+      <p style="font-size:14px;color:var(--muted);line-height:1.8;margin-top:20px;max-width:340px">
+        Mỗi tháng, cộng đồng Tecshoot bình chọn tác phẩm xuất sắc nhất. Nhiếp ảnh gia đạt <strong style="color:var(--accent)">Top Photographer</strong> nhận huy hiệu và tăng đề xuất trên trang chủ. Khách hàng tham gia vote nhận Voucher giảm giá.
+      </p>
+      <div style="margin-top:32px;display:flex;gap:16px;flex-wrap:wrap">
+        <button class="btn-large">Nộp tác phẩm</button>
+        <button class="btn-outline-large" onclick="openModal('contestModal')">Xem tất cả →</button>
+      </div>
+      <div style="margin-top:36px;display:flex;gap:32px">
+        <div><div class="stat-num" style="font-size:24px">89</div><div class="stat-label">Tác phẩm tháng này</div></div>
+        <div><div class="stat-num" style="font-size:24px">2.1k</div><div class="stat-label">Lượt vote</div></div>
+        <div><div class="stat-num" style="font-size:24px">5</div><div class="stat-label">Ngày còn lại</div></div>
+      </div>
+    </div>
+
+    <div class="contest-entries">
+      <div class="contest-entry">
+        <div class="contest-entry-photo">
+          <div class="crown-badge">👑</div>
+          📸
+        </div>
+        <div class="contest-entry-info">
+          <span class="contest-entry-name">by Nguyễn Minh Khoa</span>
+          <button class="vote-btn voted">♥ 342</button>
+        </div>
+      </div>
+      <div class="contest-entry">
+        <div class="contest-entry-photo" style="min-height:120px">🌿</div>
+        <div class="contest-entry-info">
+          <span class="contest-entry-name">by Trần Anh Tú</span>
+          <button class="vote-btn">♥ 218</button>
+        </div>
+      </div>
+      <div class="contest-entry">
+        <div class="contest-entry-photo" style="min-height:120px">💫</div>
+        <div class="contest-entry-info">
+          <span class="contest-entry-name">by Lê Thu Hà</span>
+          <button class="vote-btn">♥ 195</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES / ABOUT -->
+<section id="about">
+  <div class="section-header reveal">
+    <div>
+      <div class="section-eyebrow">Nền tảng</div>
+      <h2 class="section-title">Tại sao chọn<br><em>Tecshoot?</em></h2>
+    </div>
+  </div>
+
+  <div class="features-grid reveal">
+    <div class="feature-item">
+      <div class="feature-icon">🔒</div>
+      <div class="feature-title">Watermark Tự động</div>
+      <div class="feature-desc">Toàn bộ ảnh gốc được đóng dấu bản quyền Tecshoot ngay khi upload. Chỉ bản retouch hoàn chỉnh mới giao tới khách hàng.</div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">⚡</div>
+      <div class="feature-title">Upload Chunking</div>
+      <div class="feature-desc">Công nghệ tải lên theo khối đảm bảo thợ upload hàng trăm ảnh RAW không lo treo trình duyệt. Background upload trong khi làm việc khác.</div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">📌</div>
+      <div class="feature-title">Pin Comment Retouch</div>
+      <div class="feature-desc">Khách click thẳng vào ảnh để ghim ghi chú cụ thể. Hệ thống yêu cầu chọn từ danh sách có sẵn, loại bỏ yêu cầu mơ hồ.</div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">💾</div>
+      <div class="feature-title">Quản lý Dung lượng</div>
+      <div class="feature-desc">Thanh progress bar hiển thị dung lượng đã dùng. File gốc tự xóa sau 30 ngày hoàn tất để tiết kiệm tài nguyên server.</div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">💳</div>
+      <div class="feature-title">Thanh toán minh bạch</div>
+      <div class="feature-desc">Tổng tiền tách bạch: phí thợ chụp và phí dịch vụ nền tảng. Hỗ trợ MoMo, thẻ ngân hàng, đặt cọc 50% hoặc thanh toán 100%.</div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">🎯</div>
+      <div class="feature-title">Gợi ý Cá nhân hóa</div>
+      <div class="feature-desc">Hệ thống đề xuất thợ dựa trên lịch sử xem và đặt lịch. Concept trending, Moodboard cá nhân cho từng khách hàng.</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="section-header reveal">
+    <div>
+      <div class="section-eyebrow">Gói dịch vụ</div>
+      <h2 class="section-title">Chọn gói<br><em>phù hợp</em></h2>
+    </div>
+  </div>
+
+  <div class="pricing-grid reveal">
+    <div class="pricing-card">
+      <div class="plan-name">Cơ bản</div>
+      <div class="plan-price"><sup>đ</sup>500k</div>
+      <div class="plan-duration">/ buổi • 1 giờ chụp</div>
+      <ul class="plan-features">
+        <li>20 ảnh gốc có watermark</li>
+        <li>Chọn 5 ảnh retouch cơ bản</li>
+        <li>Giao ảnh trong 5 ngày</li>
+        <li>Chat trực tiếp với thợ</li>
+      </ul>
+      <button class="btn-primary" style="width:100%;padding:12px;border-radius:2px;font-size:14px">Chọn gói này</button>
+    </div>
+    <div class="pricing-card featured-plan">
+      <div class="popular-badge">Phổ biến nhất</div>
+      <div class="plan-name">Tiêu chuẩn</div>
+      <div class="plan-price"><sup>đ</sup>1.5M</div>
+      <div class="plan-duration">/ buổi • 2–3 giờ chụp</div>
+      <ul class="plan-features">
+        <li>50 ảnh gốc có watermark</li>
+        <li>Chọn 15 ảnh retouch nâng cao</li>
+        <li>Giao ảnh trong 3 ngày</li>
+        <li>Pin comment retouch chi tiết</li>
+        <li>Add-ons: Makeup / Studio</li>
+      </ul>
+      <button class="btn-large" style="width:100%;padding:13px;border-radius:2px;font-size:14px" onclick="handleBookingClick()">Đặt lịch ngay</button>
+    </div>
+    <div class="pricing-card">
+      <div class="plan-name">Cao cấp</div>
+      <div class="plan-price"><sup>đ</sup>4M</div>
+      <div class="plan-duration">/ buổi • Trọn ngày</div>
+      <ul class="plan-features">
+        <li>Không giới hạn ảnh gốc</li>
+        <li>Chọn 40 ảnh retouch Fine Art</li>
+        <li>Giao ảnh trong 24 giờ</li>
+        <li>Concept + Moodboard cùng thợ</li>
+        <li>In ảnh, Album thiết kế riêng</li>
+        <li>Ưu tiên slot lịch thợ Top</li>
+      </ul>
+      <button class="btn-primary" style="width:100%;padding:12px;border-radius:2px;font-size:14px">Chọn gói này</button>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="section-header reveal">
+    <div>
+      <div class="section-eyebrow">Hỏi đáp</div>
+      <h2 class="section-title">Câu hỏi<br><em>thường gặp</em></h2>
+    </div>
+  </div>
+
+  <div class="faq-list reveal">
+    <div class="faq-item open">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        Tôi có thể hủy đặt lịch không? Chính sách hoàn tiền như thế nào?
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-a"><p>Bạn có thể hủy miễn phí trước 48 giờ so với buổi chụp và được hoàn 100% tiền đặt cọc. Hủy trong vòng 24–48 giờ được hoàn 50%. Hủy dưới 24 giờ sẽ không được hoàn tiền cọc để đảm bảo quyền lợi cho nhiếp ảnh gia.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        Ảnh watermark và ảnh hoàn chỉnh khác nhau như thế nào?
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-a"><p>Ảnh watermark là ảnh gốc chưa retouch, có logo Tecshoot để bảo vệ bản quyền — dùng để bạn chọn ảnh ưng ý. Sau khi bạn chọn và nhiếp ảnh gia retouch xong, bạn sẽ nhận ảnh hoàn chỉnh chất lượng cao, không watermark.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        Tôi có thể chỉ định yêu cầu retouch cụ thể không?
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-a"><p>Có! Hệ thống Pin Comment cho phép bạn click thẳng vào từng ảnh và chọn yêu cầu từ danh sách định sẵn (Bóp dáng, Xóa rác, Chỉnh sáng, Làm mịn da...). Điều này giúp thợ hiểu chính xác bạn muốn gì, tránh hiểu nhầm.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        Các Add-ons như Makeup, Studio có thể đặt qua Tecshoot không?
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-a"><p>Có! Khi cấu hình booking, bạn sẽ thấy danh sách Add-ons đi kèm do Tecshoot cung cấp (Studio, Makeup Artist, In ấn, Album thiết kế...). Phí các dịch vụ này được hiển thị riêng biệt và rõ ràng trong hóa đơn.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        Nhiếp ảnh gia đăng ký tham gia Tecshoot như thế nào?
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-a"><p>Bạn đăng ký tài khoản Nhiếp ảnh gia, điền thông tin và upload portfolio. Đội ngũ Tecshoot sẽ xét duyệt trong 2–3 ngày làm việc. Sau khi được duyệt, bạn có thể thiết lập hồ sơ, gói chụp, lịch làm việc và bắt đầu nhận job.</p></div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- CUSTOMER FLOW CONTAINER -->
+<div id="customerFlowContainer" style="display: none; animation: fadeInFlow 0.8s ease;">
+<div class="flow-container">
+  <!-- Flow Header -->
+  <div class="flow-hero">
+    <h1>Chào mừng bạn trở lại, <em>Hiếu Thu Hải</em></h1>
+    <p>Bắt đầu hành trình lưu giữ khoảnh khắc của bạn cùng Tecshoot.</p>
+  </div>
+
+  <!-- Step Progress Indicator -->
+  <div class="step-indicator">
+    <div class="step active" data-step="1">
+      <div class="step-circle">1</div>
+      <div class="step-label">Khám phá</div>
+    </div>
+    <div class="step" data-step="2">
+      <div class="step-circle">2</div>
+      <div class="step-label">Cấu hình</div>
+    </div>
+    <div class="step" data-step="3">
+      <div class="step-circle">3</div>
+      <div class="step-label">Thanh toán</div>
+    </div>
+    <div class="step" data-step="4">
+      <div class="step-circle">4</div>
+      <div class="step-label">Nhận ảnh</div>
+    </div>
+  </div>
+
+  <!-- STEP 1: SEARCH & SELECT -->
+  <section id="step1" class="step-content active">
+    <div class="section-header">
+      <div>
+        <div class="section-eyebrow">Bước 1</div>
+        <h2 class="section-title">Tìm kiếm & <em>Lựa chọn</em></h2>
+      </div>
+    </div>
+
+    <!-- Filter Bar -->
+    <div class="filter-bar">
+      <div class="filter-item">
+        <label>Phong cách</label>
+        <select id="styleFilter">
+          <option value="all">Tất cả phong cách</option>
+          <option value="vintage">Vintage / Retro</option>
+          <option value="lookbook">Lookbook / Thời trang</option>
+          <option value="wedding">Đám cưới / Wedding</option>
+          <option value="portrait">Chân dung / Portrait</option>
+        </select>
+      </div>
+      <div class="filter-item">
+        <label>Khu vực</label>
+        <select id="areaFilter">
+          <option value="all">Tất cả khu vực</option>
+          <option value="hn">Hà Nội</option>
+          <option value="hcm">TP. Hồ Chí Minh</option>
+          <option value="dn">Đà Nẵng</option>
+        </select>
+      </div>
+      <div class="filter-item">
+        <label>Mức giá</label>
+        <select id="priceFilter">
+          <option value="all">Tất cả mức giá</option>
+          <option value="under1">Dưới 1 triệu</option>
+          <option value="1-3">1 - 3 triệu</option>
+          <option value="over3">Trên 3 triệu</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="photographer-list" id="photographerList">
+      <div class="p-card" onclick="goToStep(2, 'Nguyễn Minh Khoa', 2800000)">
+        <div class="p-image" style="background-image: url('images/DN/Hieuthuhai/avatar_1.jpg');"></div>
+        <div class="p-info">
+          <h3>Nguyễn Minh Khoa</h3>
+          <p class="p-specialty">Vintage · Portrait</p>
+          <div class="p-meta">
+            <span>⭐ 4.98 (127)</span>
+            <span class="p-price">2.8M đ</span>
+          </div>
+        </div>
+      </div>
+      <div class="p-card" onclick="goToStep(2, 'Trần Anh Tú', 1500000)">
+        <div class="p-image" style="background-image: url('images/HN/tu_ca_nhan/avatar_8.jpg');"></div>
+        <div class="p-info">
+          <h3>Trần Anh Tú</h3>
+          <p class="p-specialty">Lookbook · Fashion</p>
+          <div class="p-meta">
+            <span>⭐ 4.95 (84)</span>
+            <span class="p-price">1.5M đ</span>
+          </div>
+        </div>
+      </div>
+      <div class="p-card" onclick="goToStep(2, 'Lê Thu Hà', 2200000)">
+        <div class="p-image" style="background-image: url('images/HN/Misthy/avatar_7.jpg');"></div>
+        <div class="p-info">
+          <h3>Lê Thu Hà</h3>
+          <p class="p-specialty">Wedding · Couple</p>
+          <div class="p-meta">
+            <span>⭐ 4.92 (96)</span>
+            <span class="p-price">2.2M đ</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STEP 2: CONFIGURATION -->
+  <section id="step2" class="step-content">
+    <div class="section-header">
+      <div>
+        <div class="section-eyebrow">Bước 2</div>
+        <h2 class="section-title">Cấu hình <em>Dịch vụ</em></h2>
+      </div>
+      <button class="btn-ghost" onclick="goToStep(1)">← Quay lại</button>
+    </div>
+
+    <div class="config-grid">
+      <div class="config-main">
+        <div class="selected-photographer" style="display: flex; justify-content: space-between; align-items: center;">
+          <div class="p-mini-card">
+            <div class="p-mini-img" id="selectedPImg"></div>
+            <div>
+              <h4 id="selectedPName">Nhiếp ảnh gia</h4>
+              <p id="selectedPPrice">Phí chụp: 0đ</p>
+            </div>
+          </div>
+          <button class="btn-outline" onclick="openChat()"><span style="margin-right:8px">💬</span>Nhắn tin</button>
+        </div>
+
+        <h3 class="config-subtitle">Chọn gói dịch vụ của Nhiếp ảnh gia</h3>
+        <div class="packages-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 40px;">
+          <div class="package-card" data-package="Cơ bản" data-price-mult="0.6" onclick="selectPackage(this)">
+            <div class="package-tag">Kinh tế</div>
+            <h4>Cơ bản</h4>
+            <p>1 giờ chụp, 15 ảnh gốc</p>
+            <div class="package-price" id="pkgPriceBasic">0đ</div>
+          </div>
+          <div class="package-card active" data-package="Tiêu chuẩn" data-price-mult="1" onclick="selectPackage(this)">
+            <div class="package-tag" style="background: var(--accent); color: white;">Phổ biến</div>
+            <h4>Tiêu chuẩn</h4>
+            <p>2-3 giờ, 50 ảnh gốc, 15 retouch</p>
+            <div class="package-price" id="pkgPriceStandard">0đ</div>
+          </div>
+          <div class="package-card" data-package="Cao cấp" data-price-mult="2.5" onclick="selectPackage(this)">
+            <div class="package-tag">Pro</div>
+            <h4>Cao cấp</h4>
+            <p>Trọn ngày, Không giới hạn ảnh</p>
+            <div class="package-price" id="pkgPricePremium">0đ</div>
+          </div>
+        </div>
+
+        <h3 class="config-subtitle">Dịch vụ đi kèm (Add-ons) <small>Do Tecshoot cung cấp</small></h3>
+        <div class="addons-grid">
+          <div class="addon-card" data-price="500000">
+            <div class="addon-icon">👗</div>
+            <h4>Thuê trang phục</h4>
+            <p>Đầm lụa, Vest, Cổ phục...</p>
+            <div class="addon-price">+500k</div>
+            <button class="btn-addon" onclick="toggleAddon(this)">Thêm</button>
+          </div>
+          <div class="addon-card" data-price="300000">
+            <div class="addon-icon">💄</div>
+            <h4>Makeup & Tóc</h4>
+            <p>Trang điểm chuyên nghiệp</p>
+            <div class="addon-price">+300k</div>
+            <button class="btn-addon" onclick="toggleAddon(this)">Thêm</button>
+          </div>
+          <div class="addon-card" data-price="800000">
+            <div class="addon-icon">🏢</div>
+            <h4>Thuê Studio</h4>
+            <p>Phòng chụp Concept có sẵn</p>
+            <div class="addon-price">+800k</div>
+            <button class="btn-addon" onclick="toggleAddon(this)">Thêm</button>
+          </div>
+          <div class="addon-card" data-price="450000">
+            <div class="addon-icon">📖</div>
+            <h4>In ấn Album</h4>
+            <p>Photobook 20 trang cao cấp</p>
+            <div class="addon-price">+450k</div>
+            <button class="btn-addon" onclick="toggleAddon(this)">Thêm</button>
+          </div>
+        </div>
+      </div>
+
+      <aside class="config-summary">
+        <div class="summary-box">
+          <h4>Tổng hợp đơn hàng</h4>
+          <div class="summary-item">
+            <span>Phí thợ chụp</span>
+            <span id="sumPPrice">0đ</span>
+          </div>
+          <div id="addonItems"></div>
+          <div class="summary-item total">
+            <span>Tổng tiền</span>
+            <strong id="totalPrice">0đ</strong>
+          </div>
+          <button class="btn-primary" style="width:100%; margin-top: 20px;" onclick="goToStep(3)">Tiếp tục Booking →</button>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- STEP 3: BOOKING & PAYMENT -->
+  <section id="step3" class="step-content">
+    <div class="section-header">
+      <div>
+        <div class="section-eyebrow">Bước 3</div>
+        <h2 class="section-title">Booking & <em>Thanh toán</em></h2>
+      </div>
+      <button class="btn-ghost" onclick="goToStep(2)">← Quay lại</button>
+    </div>
+
+    <div class="booking-grid">
+      <div class="calendar-card">
+        <h3>Chọn lịch trống</h3>
+        <div class="calendar-mock">
+          <div class="cal-header">Tháng 5, 2026</div>
+          <div class="cal-days">
+            <span>CN</span><span>T2</span><span>T3</span><span>T4</span><span>T5</span><span>T6</span><span>T7</span>
+          </div>
+          <div class="cal-grid" id="calendarGrid"></div>
+        </div>
+      </div>
+
+      <div class="payment-card">
+        <h3>Phương thức thanh toán</h3>
+        <div class="payment-options">
+          <label class="payment-opt"><input type="radio" name="pay" checked><span>💳 Thẻ ngân hàng / Visa</span></label>
+          <label class="payment-opt"><input type="radio" name="pay"><span>📱 Ví MoMo / ZaloPay</span></label>
+          <label class="payment-opt"><input type="radio" name="pay"><span>🏦 Chuyển khoản</span></label>
+        </div>
+        <div class="pay-amount">
+          <div class="summary-item"><span>Cọc trước (50%)</span><strong id="depositAmount">0đ</strong></div>
+        </div>
+        <button class="btn-primary" style="width:100%; margin-top: 24px;" onclick="simulatePayment()">Xác nhận Thanh toán</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- STEP 4: POST-PRODUCTION -->
+  <section id="step4" class="step-content" style="padding: 0;">
+    <!-- ═══════════════════════════════════════════
+         STAGE SWITCHER (DÀNH CHO HẬU KỲ)
+    ═══════════════════════════════════════════ -->
+    <div class="stage-switcher">
+      <button class="stage-tab active" id="tab-select" onclick="goStage('select')">
+        <div class="stage-tab-num" id="tabnum-select">1</div>
+        <div class="stage-tab-name">
+          Chọn ảnh
+          <span class="stage-tab-sub">Xem &amp; chọn ảnh ưng ý</span>
+        </div>
+      </button>
+      <div class="stage-arrow">→</div>
+      <button class="stage-tab" id="tab-approve" onclick="goStage('approve')">
+        <div class="stage-tab-num" id="tabnum-approve">2</div>
+        <div class="stage-tab-name">
+          Duyệt &amp; Nhận
+          <span class="stage-tab-sub">Xem retouch &amp; tải về</span>
+        </div>
+      </button>
+
+      <div class="booking-strip">
+        <div class="bs-item">
+          <span class="bs-val" id="stat-selected">0</span>
+          <span class="bs-label">Đã chọn</span>
+        </div>
+        <div class="bs-item">
+          <span class="bs-val">15</span>
+          <span class="bs-label">Tối đa</span>
+        </div>
+        <div class="bs-item">
+          <span class="bs-val" id="stat-revisions">2</span>
+          <span class="bs-label">Lượt sửa</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+         STAGE 1 — CHỌN ẢNH
+    ═══════════════════════════════════════════ -->
+    <div class="stage-panel active" id="stage-select">
+      <div class="s1-header">
+        <div class="s1-eyebrow">GIAI ĐOẠN 01 — KHÁCH HÀNG</div>
+        <h1 class="s1-title">Ảnh Chờ <em>Chọn</em></h1>
+        <p class="s1-desc">Nhấn vào từng tấm ảnh để xem lớn, chọn ảnh ưng ý và để lại ghi chú retouch chi tiết.</p>
+      </div>
+
+      <div class="s1-toolbar">
+        <button class="filter-chip on" onclick="filterGrid('all', this)">Tất cả <span class="chip-badge" id="chip-all">0</span></button>
+        <button class="filter-chip" onclick="filterGrid('selected', this)">Đã chọn <span class="chip-badge" id="chip-selected">0</span></button>
+        <button class="filter-chip" onclick="filterGrid('noted', this)">Có ghi chú <span class="chip-badge" id="chip-noted">0</span></button>
+        <div class="toolbar-sep"></div>
+        <button class="filter-chip" id="grid-toggle-btn" onclick="toggleGridSize()">🔲 Lưới nhỏ</button>
+        <div class="toolbar-right">
+          <div class="selected-pill">Đã chọn: <b id="footer-count">0</b> / 15</div>
+        </div>
+      </div>
+
+      <div class="photo-grid-wrap">
+        <div class="photo-grid" id="photo-grid"></div>
+      </div>
+
+      <!-- Footer bar cố định khi có ảnh được chọn -->
+      <div class="s1-footer" id="s1-footer">
+        <div class="s1-footer-info">Đã chọn <b id="footer-b">0</b> ảnh &nbsp;·&nbsp; Nhớ thêm ghi chú cho từng tấm!</div>
+        <div class="s1-footer-actions">
+          <button class="btn-submit" id="btn-submit-sel" onclick="submitSelection()" disabled>Gửi danh sách → Giai đoạn 2</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+         STAGE 2 — DUYỆT & NHẬN
+    ═══════════════════════════════════════════ -->
+    <div class="stage-panel" id="stage-approve">
+      <div class="s2-header">
+        <div>
+          <div class="s2-eyebrow">GIAI ĐOẠN 02 — KHÁCH HÀNG</div>
+          <h2 class="s2-title">Duyệt <em>&amp; Nhận</em></h2>
+          <p class="s2-desc">Ảnh đã được thợ retouch theo ghi chú của bạn. Duyệt từng tấm để tải về không watermark.</p>
+        </div>
+        <div class="revision-badge" id="revision-badge">Còn <b id="revisions-left">2</b> lượt chỉnh lại</div>
+      </div>
+
+      <div class="approve-progress-bar">
+        <span class="apb-label">Tiến độ duyệt</span>
+        <div class="apb-track"><div class="apb-fill" id="apb-fill" style="width:0%"></div></div>
+        <span class="apb-count" id="apb-count">0 / 0 ảnh</span>
+      </div>
+
+      <div class="approve-grid-wrap">
+        <div class="approve-grid" id="approve-grid"></div>
+      </div>
+
+      <div class="s2-action-bar">
+        <div class="s2-action-info">Đã duyệt <b id="approved-count">0</b> ảnh</div>
+        <div class="s2-action-btns">
+          <button class="btn-request-revision" id="btn-rev" onclick="openRevisionModal()">↩ Yêu cầu chỉnh sửa lại</button>
+          <button class="btn-approve-all" onclick="approveAll()">✓ Duyệt tất cả</button>
+          <button class="btn-download-all" id="btn-dl" onclick="openDownloadModal()">⬇ Tải về tất cả (ZIP)</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="#" class="nav-logo">Tec<span>shoot</span></a>
+      <p>Nền tảng kết nối nhiếp ảnh gia chuyên nghiệp với khách hàng. Mọi khoảnh khắc đáng được ghi lại một cách hoàn hảo nhất.</p>
+      <div class="social-links">
+        <div class="social-link">f</div>
+        <div class="social-link">in</div>
+        <div class="social-link">ig</div>
+        <div class="social-link">yt</div>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Dịch vụ</h4>
+      <ul>
+        <li><a href="customer-experience.html">Tìm nhiếp ảnh gia</a></li>
+        <li><a href="#">Gói chụp ảnh</a></li>
+        <li><a href="#">Dịch vụ Add-ons</a></li>
+        <li><a href="#">Cuộc thi ảnh</a></li>
+        <li><a href="#">Blog & Inspiration</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Đối tác</h4>
+      <ul>
+        <li><a href="photographer-dashboard.html">Đăng ký làm thợ</a></li>
+        <li><a href="photographer-dashboard.html">Dashboard thợ</a></li>
+        <li><a href="#">Chính sách thợ</a></li>
+        <li><a href="#">Hỗ trợ kỹ thuật</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Hỗ trợ</h4>
+      <ul>
+        <li><a href="#">Trung tâm FAQ</a></li>
+        <li><a href="#">Liên hệ</a></li>
+        <li><a href="#">Chính sách bảo mật</a></li>
+        <li><a href="#">Điều khoản sử dụng</a></li>
+        <li><a href="#">Chính sách hoàn tiền</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2024 Tecshoot. Bảo lưu mọi quyền.</span>
+    <div class="app-links">
+      <div class="app-btn">📱 App Store</div>
+      <div class="app-btn">🤖 Google Play</div>
+    </div>
+  </div>
+</footer>
+
+<!-- MODALS -->
+<!-- Booking Modal -->
+<div class="modal-overlay" id="bookingModal">
+  <div class="modal-box">
+    <div class="modal-title">Đặt lịch chụp</div>
+    <div class="modal-sub">Bạn đang chọn <strong style="color:var(--accent)">Nguyễn Minh Khoa</strong> — Editorial · Fine Art · Portrait</div>
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <div class="search-field">
+        <label>Gói chụp</label>
+        <select>
+          <option>Tiêu chuẩn — 1.500.000đ / 2-3 giờ</option>
+          <option>Cơ bản — 500.000đ / 1 giờ</option>
+          <option>Cao cấp — 4.000.000đ / Trọn ngày</option>
+        </select>
+      </div>
+      <div class="search-field">
+        <label>Ngày chụp</label>
+        <input type="date" value="2024-08-28">
+      </div>
+     <div class="search-field">
+  <label style="margin-bottom: 8px; display: block;">Dịch vụ đi kèm của hệ thống</label>
+  <div class="flex-col gap-10">
+    <label class="flex-row align-center text-muted-13" style="cursor: pointer;">
+      <input type="checkbox" name="addon" style="width: auto; margin-right: 8px;"> 
+      Makeup & Làm tóc (+500.000đ)
+    </label>
+    <label class="flex-row align-center text-muted-13" style="cursor: pointer;">
+      <input type="checkbox" name="addon" style="width: auto; margin-right: 8px;"> 
+      Thuê Studio (+800.000đ)
+    </label>
+    <label class="flex-row align-center text-muted-13" style="cursor: pointer;">
+      <input type="checkbox" name="addon" style="width: auto; margin-right: 8px;"> 
+      Set up trang trí ngoài trời (+1.200.000đ)
+    </label>
+    <label class="flex-row align-center text-muted-13" style="cursor: pointer;">
+      <input type="checkbox" name="addon" style="width: auto; margin-right: 8px;"> 
+      In ảnh / Photobook (+300.000đ)
+    </label>
+    <label class="flex-row align-center text-muted-13" style="cursor: pointer;">
+      <input type="checkbox" name="addon" style="width: auto; margin-right: 8px;"> 
+      Thuê thợ phụ / Ekip (+1.000.000đ)
+    </label>
+  </div>
+</div>
+      <div style="padding:14px;background:var(--bg3);border-radius:2px;font-size:13px">
+        <div style="display:flex;justify-content:space-between;margin-bottom:6px"><span style="color:var(--muted)">Phí thợ chụp</span><span>1.500.000đ</span></div>
+        <div style="display:flex;justify-content:space-between;margin-bottom:6px"><span style="color:var(--muted)">Phí nền tảng (8%)</span><span>120.000đ</span></div>
+        <div style="display:flex;justify-content:space-between;border-top:1px solid var(--border);padding-top:8px;margin-top:8px;font-weight:500"><span>Tổng cộng</span><span style="color:var(--accent)">1.620.000đ</span></div>
+      </div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-ghost" onclick="closeModal('bookingModal')">Huỷ</button>
+      <button class="btn-primary">Đặt cọc 50% →</button>
+    </div>
+  </div>
+</div>
+
+<!-- Login Modal -->
+<div class="modal-overlay" id="loginModal">
+  <div class="modal-box">
+    <div class="modal-title">Chào mừng trở lại</div>
+    <div class="modal-sub">Đăng nhập để quản lý booking và xem gallery ảnh của bạn.</div>
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <div class="search-field">
+        <label>Email</label>
+        <input type="email" placeholder="email@example.com">
+      </div>
+      <div class="search-field">
+        <label>Mật khẩu</label>
+        <input type="password" placeholder="••••••••">
+      </div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-ghost" onclick="closeModal('loginModal')">Huỷ</button>
+      <button class="btn-primary" onclick="handleLogin()">Đăng nhập</button>
+    </div>
+    <div style="text-align:center;margin-top:16px;font-size:12px;color:var(--muted)">Chưa có tài khoản? <a href="#" style="color:var(--accent)">Đăng ký ngay</a></div>
+  </div>
+</div>
+
+<!-- Dashboard Promo Modal -->
+<div class="modal-overlay" id="dashModal">
+  <div class="modal-box">
+    <div class="modal-title">Tham gia Tecshoot với tư cách Nhiếp ảnh gia</div>
+    <div class="modal-sub">Tiếp cận hàng nghìn khách hàng, quản lý công việc chuyên nghiệp với Dashboard tích hợp CRM, Upload Center và theo dõi doanh thu.</div>
+    <div style="display:flex;flex-direction:column;gap:10px;margin:20px 0">
+      <div style="display:flex;gap:12px;align-items:center;font-size:13px;color:var(--muted)"><span style="color:var(--success)">✓</span> Dashboard quản lý job và thu nhập</div>
+      <div style="display:flex;gap:12px;align-items:center;font-size:13px;color:var(--muted)"><span style="color:var(--success)">✓</span> Upload Center với chunked upload</div>
+      <div style="display:flex;gap:12px;align-items:center;font-size:13px;color:var(--muted)"><span style="color:var(--success)">✓</span> Nhận yêu cầu retouch cụ thể từ khách</div>
+      <div style="display:flex;gap:12px;align-items:center;font-size:13px;color:var(--muted)"><span style="color:var(--success)">✓</span> Tham gia cuộc thi Photo of the Month</div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-ghost" onclick="closeModal('dashModal')">Đóng</button>
+      <a href="photographer-dashboard.html" class="btn-primary" style="display: inline-block; text-align: center;">Đăng ký làm thợ →</a>
+    </div>
+  </div>
+</div>
+<!-- Chat Modal -->
+<div class="modal-overlay" id="chatModal">
+  <div class="modal-box" style="width: 400px; padding: 0; overflow: hidden; display: flex; flex-direction: column; height: 500px;">
+    <div class="chat-header" style="padding: 16px; background: var(--bg2); border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center;">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <div id="chatPImg" style="width: 32px; height: 32px; border-radius: 50%; background-size: cover;"></div>
+        <strong id="chatPName">Nhiếp ảnh gia</strong>
+      </div>
+      <button class="btn-ghost" onclick="closeModal('chatModal')" style="padding: 4px;">✕</button>
+    </div>
+    <div id="chatMessages" style="flex: 1; padding: 16px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; background: var(--bg);">
+      <div class="chat-msg system" style="text-align: center; font-size: 11px; color: var(--muted);">Đây là bắt đầu của cuộc trò chuyện.</div>
+    </div>
+    <div style="padding: 16px; border-top: 1px solid var(--border); background: var(--bg2); display: flex; gap: 10px;">
+      <input type="text" id="chatInput" placeholder="Nhập tin nhắn..." style="flex: 1; padding: 10px; border: 1px solid var(--border); border-radius: 4px; background: var(--bg); color: var(--text);">
+      <button class="btn-primary" onclick="sendMessage()" style="padding: 0 20px;">Gửi</button>
+    </div>
+  </div>
+</div>
+
+  <!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+  <div class="lb-backdrop" onclick="closeLB()"></div>
+  <div class="lb-box">
+    <div class="lb-visual">
+      <button class="lb-close" onclick="closeLB()">✕</button>
+      <button class="lb-nav-btn lb-prev" onclick="navLB(-1)">‹</button>
+      <button class="lb-nav-btn lb-next" onclick="navLB(1)">›</button>
+      <div class="lb-photo-display" id="lb-display"></div>
+      <div class="lb-wm" id="lb-wm">TECSHOOT · PREVIEW ONLY</div>
+      <div class="lb-select-btn-wrap">
+        <button class="lb-select-btn" id="lb-sel-btn" onclick="toggleLBSelect()">✓ Chọn ảnh này</button>
+      </div>
+    </div>
+    <div class="lb-panel">
+      <div class="lb-panel-head">
+        <div><span class="lb-panel-num" id="lb-num">01</span><span class="lb-panel-total" id="lb-tot">/ 24</span></div>
+        <div class="lb-panel-id" id="lb-id">DSC_0001.jpg</div>
+      </div>
+      <div class="lb-notes-wrap">
+        <div class="lb-notes-label">Ghi chú Retouch</div>
+        <div class="note-list" id="lb-note-list"></div>
+        <div class="quick-chips" id="quick-chips">
+          <button class="qchip" onclick="addChip(this,'Bóp mặt / dáng')">Bóp mặt / dáng</button>
+          <button class="qchip" onclick="addChip(this,'Tone màu ấm hơn')">Tone ấm hơn</button>
+          <button class="qchip" onclick="addChip(this,'Làm mịn da')">Làm mịn da</button>
+          <button class="qchip" onclick="addChip(this,'Xóa rác nền')">Xóa rác nền</button>
+        </div>
+        <div class="note-input-wrap">
+          <textarea class="note-textarea" id="note-ta" rows="3" placeholder="Mô tả cụ thể yêu cầu..." oninput="validateNote(this)"></textarea>
+          <div class="note-input-foot">
+            <span class="note-chars" id="note-chars">0/200</span>
+            <div class="note-warn" id="note-warn">⚠ Ghi chú quá chung!</div>
+            <button class="btn-add-note" id="btn-add-note" onclick="addNote()" disabled>Thêm</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Revision Modal -->
+<div class="modal-overlay" id="rev-modal">
+  <div class="modal-box">
+    <h3>Yêu Cầu Chỉnh Sửa Lại</h3>
+    <p>Mô tả chi tiết để thợ biết cần chỉnh gì.</p>
+    <textarea id="rev-notes" rows="5" placeholder="VD: Tấm 3, 7 — tone còn hơi lạnh..."></textarea>
+    <div class="modal-actions">
+      <button class="btn-ghost" onclick="closeRevisionModal()">Hủy</button>
+      <button class="btn-primary" onclick="confirmRevision()">Gửi yêu cầu</button>
+    </div>
+  </div>
+</div>
+
+<!-- Download Modal -->
+<div class="download-modal" id="dl-modal">
+  <div class="dm-box">
+    <div class="dm-icon">✓</div>
+    <h3>Bộ ảnh đã được duyệt!</h3>
+    <p>Watermark đã được gỡ bỏ. Tải về ảnh gốc chất lượng cao.</p>
+    <button class="btn-dl-final" onclick="doDownload()">⬇ Tải về toàn bộ ảnh (ZIP)</button>
+    <button class="btn-ghost" style="width:100%;margin-top:10px" onclick="closeDLModal()">Đóng</button>
+  </div>
+</div>
+
+<!-- Toast Container -->
+<div id="toast-stack"></div>
+
+<script src="script.js"></script>
+</body>
+</html>

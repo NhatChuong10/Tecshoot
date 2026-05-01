@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Nhiếp Ảnh Gia - Tecshoot</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="photographer-dashboard.css">
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav class="dash-nav">
+    <div class="nav-left">
+      <a href="index.html" class="nav-logo" style="text-decoration: none;"><span style="margin-right: 8px;">📸</span>Tec<span>shoot</span></a>
+    </div>
+    <div class="nav-right">
+      <div class="user-profile">
+        <div class="user-avatar">HT</div>
+        <div class="user-info">
+          <div class="user-name">Hiếu Thu Hải</div>
+          <div class="user-role">Nhiếp Ảnh Gia</div>
+        </div>
+      </div>
+      <button class="btn-logout">Đăng xuất</button>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTAINER -->
+  <div class="dashboard-container">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar-menu">
+        <div class="menu-item active" data-tab="orders">
+          <span class="menu-icon">📋</span>
+          <span class="menu-text">Đơn Đặt Hàng</span>
+          <span class="badge">3</span>
+        </div>
+        <div class="menu-item" data-tab="calendar">
+          <span class="menu-icon">📅</span>
+          <span class="menu-text">Lịch Chụp</span>
+        </div>
+        <div class="menu-item" data-tab="checklist">
+          <span class="menu-icon">✓</span>
+          <span class="menu-text">Checklist</span>
+        </div>
+        <div class="menu-item" data-tab="postprod">
+          <span class="menu-icon">🎨</span>
+          <span class="menu-text">Hậu Kỳ</span>
+          <span class="badge">2</span>
+        </div>
+        <div class="menu-item" data-tab="messages">
+          <span class="menu-icon">💬</span>
+          <span class="menu-text">Tin Nhắn</span>
+          <span class="badge">1</span>
+        </div>
+        <div class="menu-item" data-tab="storage">
+          <span class="menu-icon">💾</span>
+          <span class="menu-text">Lưu Trữ</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+      <!-- TAB 1: INCOMING ORDERS -->
+      <section class="tab-content active" id="orders-tab">
+        <div class="section-header">
+          <h1>Đơn Đặt Hàng Mới</h1>
+          <p>Quản lý yêu cầu booking từ khách hàng</p>
+        </div>
+
+        <div class="orders-container">
+          <!-- ORDER CARD 1 -->
+          <div class="order-card">
+            <div class="order-header">
+              <div class="order-title">
+                <h3>Ảnh Cá Nhân - Bộ Sưu Tập Mùa Hè</h3>
+                <span class="order-id">#ORD-2026-001</span>
+              </div>
+              <span class="order-status new">🔔 Mới</span>
+            </div>
+            <div class="order-body">
+              <div class="order-detail">
+                <strong>👤 Khách Hàng:</strong> Nguyễn Bảo Linh
+              </div>
+              <div class="order-detail">
+                <strong>📅 Ngày Chụp:</strong> 15/05/2026 - 14:00
+              </div>
+              <div class="order-detail">
+                <strong>📍 Địa Điểm:</strong> Bờ hồ Hoan Kiếm, Hà Nội
+              </div>
+              <div class="order-detail">
+                <strong>📦 Gói Dịch Vụ:</strong>
+                <div class="services-list">
+                  <span class="service-tag">• Chụp 2 giờ</span>
+                  <span class="service-tag">• 100+ ảnh RAW</span>
+                  <span class="service-tag">• Retouching đầy đủ</span>
+                  <span class="service-tag">• Album in</span>
+                </div>
+              </div>
+            </div>
+            <div class="order-footer">
+              <button class="btn-secondary" onclick="viewOrderDetails(1)">Xem Chi Tiết</button>
+              <button class="btn-primary" onclick="acceptOrder(1)">✓ Chấp Nhận</button>
+              <button class="btn-danger" onclick="rejectOrder(1)">✕ Từ Chối</button>
+            </div>
+          </div>
+
+          <!-- ORDER CARD 2 -->
+          <div class="order-card">
+            <div class="order-header">
+              <div class="order-title">
+                <h3>Ảnh Gia Đình</h3>
+                <span class="order-id">#ORD-2026-002</span>
+              </div>
+              <span class="order-status accepted">✓ Đã Chấp Nhận</span>
+            </div>
+            <div class="order-body">
+              <div class="order-detail">
+                <strong>👤 Khách Hàng:</strong> Trần Minh Tuấn
+              </div>
+              <div class="order-detail">
+                <strong>📅 Ngày Chụp:</strong> 18/05/2026 - 10:00
+              </div>
+              <div class="order-detail">
+                <strong>📍 Địa Điểm:</strong> Công viên Thống Nhất, Hà Nội
+              </div>
+              <div class="order-detail">
+                <strong>📦 Gói Dịch Vụ:</strong>
+                <div class="services-list">
+                  <span class="service-tag">• Chụp 3 giờ</span>
+                  <span class="service-tag">• 150+ ảnh</span>
+                  <span class="service-tag">• Retouching cơ bản</span>
+                </div>
+              </div>
+            </div>
+            <div class="order-footer">
+              <button class="btn-secondary" onclick="viewOrderDetails(2)">Xem Chi Tiết</button>
+              <button class="btn-secondary" disabled>✓ Đã Chấp Nhận</button>
+              <button class="btn-danger" onclick="rejectOrder(2)">Hủy</button>
+            </div>
+          </div>
+
+          <!-- ORDER CARD 3 -->
+          <div class="order-card">
+            <div class="order-header">
+              <div class="order-title">
+                <h3>Ảnh Sự Kiện - Tiệc Cưới</h3>
+                <span class="order-id">#ORD-2026-003</span>
+              </div>
+              <span class="order-status rejected">✕ Từ Chối</span>
+            </div>
+            <div class="order-body">
+              <div class="order-detail">
+                <strong>👤 Khách Hàng:</strong> Phạm Thanh Bình & Ngô Quỳnh Chi
+              </div>
+              <div class="order-detail">
+                <strong>📅 Ngày Chụp:</strong> 22/05/2026 - 16:00
+              </div>
+              <div class="order-detail">
+                <strong>📍 Địa Điểm:</strong> Nhà Hàng Lakeside, Hà Nội
+              </div>
+              <div class="order-detail">
+                <strong>📦 Gói Dịch Vụ:</strong>
+                <div class="services-list">
+                  <span class="service-tag">• Chụp toàn ngày (8h)</span>
+                  <span class="service-tag">• 500+ ảnh</span>
+                  <span class="service-tag">• Retouching đầy đủ</span>
+                  <span class="service-tag">• Album in cao cấp</span>
+                  <span class="service-tag">• Video highlight</span>
+                </div>
+              </div>
+            </div>
+            <div class="order-footer">
+              <button class="btn-secondary" onclick="viewOrderDetails(3)">Xem Chi Tiết</button>
+              <button class="btn-primary" onclick="acceptOrder(3)">✓ Chấp Nhận</button>
+              <button class="btn-danger" onclick="rejectOrder(3)">✕ Từ Chối</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 2: CALENDAR -->
+      <section class="tab-content" id="calendar-tab">
+        <div class="section-header">
+          <h1>Lịch Chụp</h1>
+          <p>Sắp xếp lịch trình shooting theo ngày/tuần</p>
+        </div>
+
+        <div class="calendar-wrapper">
+          <div class="calendar-header">
+            <button class="btn-nav">← Tuần Trước</button>
+            <h2 id="currentWeek">Tuần 18-24/05/2026</h2>
+            <button class="btn-nav">Tuần Sau →</button>
+          </div>
+
+          <div class="calendar-grid">
+            <div class="calendar-day">
+              <div class="day-header">Thứ 2 - 18/5</div>
+              <div class="day-content">
+                <div class="shoot-item free">Trống</div>
+              </div>
+            </div>
+
+            <div class="calendar-day">
+              <div class="day-header">Thứ 3 - 19/5</div>
+              <div class="day-content">
+                <div class="shoot-item booked">
+                  <div class="shoot-time">10:00</div>
+                  <div class="shoot-name">Gia Đình - Trần Minh Tuấn</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="calendar-day">
+              <div class="day-header">Thứ 4 - 20/5</div>
+              <div class="day-content">
+                <div class="shoot-item free">Trống</div>
+              </div>
+            </div>
+
+            <div class="calendar-day">
+              <div class="day-header">Thứ 5 - 21/5</div>
+              <div class="day-content">
+                <div class="shoot-item booked">
+                  <div class="shoot-time">14:00</div>
+                  <div class="shoot-name">Cá Nhân - Nguyễn Bảo Linh</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="calendar-day">
+              <div class="day-header">Thứ 6 - 22/5</div>
+              <div class="day-content">
+                <div class="shoot-item booked wedding">
+                  <div class="shoot-time">16:00</div>
+                  <div class="shoot-name">💒 Cưới - Phạm Thanh Bình</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="calendar-day">
+              <div class="day-header">Thứ 7 - 23/5</div>
+              <div class="day-content">
+                <div class="shoot-item free">Trống</div>
+              </div>
+            </div>
+
+            <div class="calendar-day">
+              <div class="day-header">CN - 24/5</div>
+              <div class="day-content">
+                <div class="shoot-item free">Trống</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 3: CHECKLIST -->
+      <section class="tab-content" id="checklist-tab">
+        <div class="section-header">
+          <h1>Checklist Chuẩn Bị</h1>
+          <p>Danh sách kiểm tra trước mỗi buổi chụp</p>
+        </div>
+
+        <div class="checklists-container">
+          <!-- CHECKLIST 1: PERSONAL PHOTOSHOOT -->
+          <div class="checklist-card">
+            <div class="checklist-header">
+              <h3>📸 Cá Nhân - Nguyễn Bảo Linh</h3>
+              <div class="checklist-date">Ngày 21/05/2026 - 14:00</div>
+            </div>
+
+            <div class="checklist-items">
+              <div class="checklist-item">
+                <input type="checkbox" id="check1-1">
+                <label for="check1-1">Sạc đầy pin máy ảnh & pin dự phòng</label>
+              </div>
+              <div class="checklist-item">
+                <input type="checkbox" id="check1-2">
+                <label for="check1-2">Chuẩn bị thẻ nhớ (xóa sạch, định dạng)</label>
+              </div>
+              <div class="checklist-item">
+                <input type="checkbox" id="check1-3" checked>
+                <label for="check1-3">Kiểm tra ống kính & làm sạch bộ lọc</label>
+              </div>
+              <div class="checklist-item">
+                <input type="checkbox" id="check1-4">
+                <label for="check1-4">Mang theo bộ phụ kiện (bàng, tấm chắn, bộ đèn)</label>
+              </div>
+              <div class="checklist-item">
+                <input type="checkbox" id="check1-5">
+                <label for="check1-5">Liên hệ khách xác nhận vị trí & thời gian</label>
+              </div>
+              <div class="checklist-item">
+                <input type="checkbox" id="check1-6">
+                <label for="check1-6">Kiểm tra thời tiết & chuẩn bị phương án</label>
+              </div>
+              <div class="checklist-item">
+                <input type="checkbox" id="check1-7">
+                <label for="check1-7">Đến địa điểm 30 phút trước</label>
+              </div>
+            </div>
+
+            <div class="checklist-progress">
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: 30%"></div>
+              </div>
+              <span class="progress-text">2/7 hoàn thành</span>
+            </div>
+          </div>
+
+          <!-- CHECKLIST 2: FAMILY PHOTOSHOOT -->
+          <div class="checklist-card">
+            <div class="checklist-header">
+              <h3>👨‍👩‍👧‍👦 Gia Đình - Trần Minh Tuấn</h3>
+              <div class="checklist-date">Ngày 19/05/2026 - 10:00</div>
+            </div>
+
+            <div class="checklist-items">
+              <div class="checklist-item">
+                <input type="checkbox" id="check2-1" checked>
+                <label for="check2-1">Sạc đầy pin máy ảnh & pin dự phòng</label>
+              </div>
+              <div class="checklist-item">
+                <input type="checkbox" id="check2-2" checked>
+                <label for="check2-2">Chuẩn bị thẻ nhớ (xóa sạch, định dạng)</label>
+              </div>
+              <div class="checklist-item">
+                <input type="checkbox" id="check2-3" checked>
+                <label for="check2-3">Kiểm tra ống kính & làm sạch bộ lọc</label>
+              </div>
+              <div class="checklist-item">
+                <input type="checkbox" id="check2-4">
+                <label for="check2-4">Mang theo bộ phụ kiện</label>
+              </div>
+              <div class="checklist-item">
+                <input type="checkbox" id="check2-5">
+                <label for="check2-5">Liên hệ khách xác nhận vị trí & thời gian</label>
+              </div>
+              <div class="checklist-item">
+                <input type="checkbox" id="check2-6" checked>
+                <label for="check2-6">Kiểm tra thời tiết</label>
+              </div>
+              <div class="checklist-item">
+                <input type="checkbox" id="check2-7" checked>
+                <label for="check2-7">Đến địa điểm 30 phút trước</label>
+              </div>
+            </div>
+
+            <div class="checklist-progress">
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: 72%"></div>
+              </div>
+              <span class="progress-text">5/7 hoàn thành</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 4: POST-PRODUCTION -->
+      <section class="tab-content" id="postprod-tab">
+        <div class="section-header">
+          <h1>Quản Lý Hậu Kỳ (Post-Production)</h1>
+          <p>Upload, retouching và bàn giao ảnh hoàn thiện</p>
+        </div>
+
+        <div class="postprod-container">
+          <!-- STEP 1: UPLOAD ORIGINALS -->
+          <div class="postprod-card">
+            <div class="postprod-header">
+              <span class="step-number">1</span>
+              <h3>Upload Ảnh Gốc</h3>
+            </div>
+
+            <div class="postprod-body">
+              <div class="recent-project">
+                <div class="project-info">
+                  <h4>Ảnh Cá Nhân - Nguyễn Bảo Linh</h4>
+                  <p>Ngày chụp: 15/05/2026</p>
+                </div>
+                <span class="badge completed">✓ Đã Upload</span>
+              </div>
+
+              <div class="upload-box" onclick="triggerUpload()">
+                <div class="upload-icon">⬆️</div>
+                <div class="upload-text">Kéo thả hoặc click để upload ảnh gốc (RAW)</div>
+                <div class="upload-hint">Hỗ trợ: JPG, RAW, PSD (Max 500MB/lần)</div>
+                <input type="file" id="fileInput" style="display: none" multiple accept="image/*,.raw">
+              </div>
+
+              <div class="watermark-info">
+                <strong>⚠️ Lưu ý:</strong> Hệ thống sẽ tự động thêm watermark "TECSHOOT" để bảo vệ bản quyền
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 2: CUSTOMER SELECTION -->
+          <div class="postprod-card">
+            <div class="postprod-header">
+              <span class="step-number">2</span>
+              <h3>Nhận Danh Sách Chọn Ảnh</h3>
+            </div>
+
+            <div class="postprod-body">
+              <div class="customer-selection-item">
+                <div class="customer-name">Ảnh Gia Đình - Trần Minh Tuấn</div>
+                <div class="selection-status">
+                  <strong>🔔 Khách đã chọn 45/150 ảnh để retouching</strong>
+                </div>
+                <div class="selection-progress">
+                  <div class="progress-bar">
+                    <div class="progress-fill" style="width: 30%"></div>
+                  </div>
+                  <span class="progress-label">45 ảnh chọn</span>
+                </div>
+                <button class="btn-secondary" onclick="viewSelectedPhotos()">Xem Danh Sách Chọn</button>
+              </div>
+
+              <div class="customer-selection-item">
+                <div class="customer-name">Tiệc Cưới - Phạm Thanh Bình & Ngô Quỳnh Chi</div>
+                <div class="selection-status">
+                  <strong>⏳ Chờ khách chọn (150/500 ảnh được upload)</strong>
+                </div>
+                <div class="selection-progress">
+                  <div class="progress-bar">
+                    <div class="progress-fill" style="width: 30%"></div>
+                  </div>
+                  <span class="progress-label">150 ảnh đã upload</span>
+                </div>
+                <button class="btn-secondary" onclick="sendReminderToCustomer()">Nhắc Nhở Khách</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 3: RETOUCHING QUEUE -->
+          <div class="postprod-card">
+            <div class="postprod-header">
+              <span class="step-number">3</span>
+              <h3>Danh Sách Chỉnh Sửa (Retouching)</h3>
+            </div>
+
+            <div class="postprod-body">
+              <div class="retouching-item in-progress">
+                <div class="item-header">
+                  <span class="status-badge in-progress">Đang chỉnh sửa</span>
+                  <h4>Ảnh Gia Đình - Trần Minh Tuấn</h4>
+                </div>
+                <div class="item-detail">
+                  <strong>Tiến độ:</strong> 20/45 ảnh đã hoàn thiện
+                </div>
+                <div class="progress-bar-small">
+                  <div class="progress-fill" style="width: 44%"></div>
+                </div>
+                <button class="btn-tertiary">Tiếp tục Retouching</button>
+              </div>
+
+              <div class="retouching-item pending">
+                <div class="item-header">
+                  <span class="status-badge pending">Chờ xử lý</span>
+                  <h4>Ảnh Cá Nhân - Nguyễn Bảo Linh</h4>
+                </div>
+                <div class="item-detail">
+                  <strong>Số lượng:</strong> 100 ảnh cần retouching đầy đủ
+                </div>
+                <button class="btn-primary">Bắt Đầu Retouching</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 4: FINAL DELIVERY -->
+          <div class="postprod-card">
+            <div class="postprod-header">
+              <span class="step-number">4</span>
+              <h3>Bàn Giao Ảnh Cuối (Final Deliverables)</h3>
+            </div>
+
+            <div class="postprod-body">
+              <div class="delivery-item completed">
+                <div class="item-title">✓ Ảnh Cá Nhân - Nguyễn Bảo Linh</div>
+                <div class="item-detail">
+                  <strong>Trạng thái:</strong> Đã upload, chờ khách tải về
+                </div>
+                <div class="item-time">Bàn giao: 10/05/2026</div>
+                <button class="btn-secondary" onclick="downloadLink()">Lấy Link Tải</button>
+              </div>
+
+              <div class="delivery-item ready">
+                <div class="item-title">⏳ Ảnh Cơm Tối - Đặc Biệt</div>
+                <div class="item-detail">
+                  <strong>Trạng thái:</strong> Retouching hoàn tất, sẵn sàng upload
+                </div>
+                <button class="btn-primary" onclick="uploadFinalPhotos()">Upload Bàn Giao</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 4.5: MESSAGES -->
+      <section class="tab-content" id="messages-tab">
+        <div class="section-header">
+          <h1>Tin Nhắn</h1>
+          <p>Giao tiếp với khách hàng</p>
+        </div>
+
+        <div class="messages-container">
+          <div class="messages-sidebar">
+            <div class="conversation-item active" data-customer="1">
+              <div class="conversation-avatar">NB</div>
+              <div class="conversation-info">
+                <div class="conversation-name">Nguyễn Bảo Linh</div>
+                <div class="conversation-preview">Cảm ơn bạn! Tôi rất hài lòng...</div>
+              </div>
+            </div>
+            <div class="conversation-item" data-customer="2">
+              <div class="conversation-avatar">TM</div>
+              <div class="conversation-info">
+                <div class="conversation-name">Trần Minh Tuấn</div>
+                <div class="conversation-preview">Còn chỗ nào để chỉnh lại không?</div>
+              </div>
+            </div>
+            <div class="conversation-item" data-customer="3">
+              <div class="conversation-avatar">PT</div>
+              <div class="conversation-info">
+                <div class="conversation-name">Phạm Thanh Bình</div>
+                <div class="conversation-preview">Khi nào có ảnh thử?</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="messages-chat">
+            <div class="chat-header">
+              <div>
+                <h3>Nguyễn Bảo Linh</h3>
+                <p>Ảnh Cá Nhân - #ORD-2026-001</p>
+              </div>
+              <button class="btn-secondary" onclick="openOrderDetails(1)">Xem Đơn</button>
+            </div>
+
+            <div class="chat-messages" id="chatMessages">
+              <div class="message-group sent">
+                <div class="message">
+                  <div class="message-text">Xin chào Bảo Linh! 👋 Mình đã nhận được yêu cầu của bạn</div>
+                  <div class="message-time">10:30</div>
+                </div>
+              </div>
+
+              <div class="message-group received">
+                <div class="message-avatar">NB</div>
+                <div class="message">
+                  <div class="message-text">Chào bạn! Rất hứng hứng cho buổi chụp</div>
+                  <div class="message-time">10:45</div>
+                </div>
+              </div>
+
+              <div class="message-group received">
+                <div class="message">
+                  <div class="message-text">Bạn có thể chụp gần hơn chút không, để focus vào khuôn mặt</div>
+                  <div class="message-time">10:47</div>
+                </div>
+              </div>
+
+              <div class="message-group sent">
+                <div class="message">
+                  <div class="message-text">Chắc chắn rồi! Mình sẽ chú ý vấn đề đó 📸</div>
+                  <div class="message-time">11:00</div>
+                </div>
+              </div>
+
+              <div class="message-group received">
+                <div class="message-avatar">NB</div>
+                <div class="message">
+                  <div class="message-text">Cảm ơn bạn! Tôi rất hài lòng với dịch vụ của bạn 😊</div>
+                  <div class="message-time">11:15</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="chat-input-box">
+              <div class="input-row">
+                <input type="text" id="messageInput" placeholder="Nhập tin nhắn..." class="chat-input">
+                <button class="btn-primary" onclick="sendMessage('sent')">Gửi</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 5: STORAGE -->
+      <section class="tab-content" id="storage-tab">
+        <div class="section-header">
+          <h1>Lưu Trữ & Dung Lượng</h1>
+          <p>Quản lý dung lượng lưu trữ các bộ ảnh</p>
+        </div>
+
+        <div class="storage-container">
+          <div class="storage-overview">
+            <div class="storage-stat">
+              <strong>Dung lượng sử dụng:</strong>
+              <span>245.8 GB / 1 TB</span>
+            </div>
+            <div class="storage-stat">
+              <strong>Còn lại:</strong>
+              <span class="available">754.2 GB (75.4%)</span>
+            </div>
+          </div>
+
+          <div class="storage-bar-wrap">
+            <div class="storage-bar-label">
+              <span>Dung lượng</span>
+              <span>24.6%</span>
+            </div>
+            <div class="storage-bar">
+              <div class="storage-bar-fill" style="width: 24.6%"></div>
+            </div>
+          </div>
+
+          <div class="projects-list">
+            <h3>Các Bộ Ảnh Đã Lưu</h3>
+
+            <div class="project-item">
+              <div class="project-name">Tiệc Cưới - Phạm Thanh Bình</div>
+              <div class="project-size">125.5 GB</div>
+              <div class="storage-bar-small">
+                <div class="storage-bar-fill-small" style="width: 51%"></div>
+              </div>
+              <button class="btn-delete" onclick="deleteProject()">Xóa</button>
+            </div>
+
+            <div class="project-item">
+              <div class="project-name">Ảnh Gia Đình 2026</div>
+              <div class="project-size">65.3 GB</div>
+              <div class="storage-bar-small">
+                <div class="storage-bar-fill-small" style="width: 26.5%"></div>
+              </div>
+              <button class="btn-delete" onclick="deleteProject()">Xóa</button>
+            </div>
+
+            <div class="project-item">
+              <div class="project-name">Ảnh Cá Nhân - Nguyễn Bảo Linh</div>
+              <div class="project-size">55.0 GB</div>
+              <div class="storage-bar-small">
+                <div class="storage-bar-fill-small" style="width: 22.3%"></div>
+              </div>
+              <button class="btn-delete" onclick="deleteProject()">Xóa</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- MODAL: ORDER DETAILS -->
+  <div class="modal" id="orderModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Chi Tiết Đơn Đặt Hàng</h2>
+        <button class="modal-close" onclick="closeModal('orderModal')">✕</button>
+      </div>
+      <div class="modal-body" id="orderModalBody">
+        <!-- Content will be inserted here -->
+      </div>
+    </div>
+  </div>
+
+  <script src="photographer-dashboard.js"></script>
+</body>
+
+</html>
