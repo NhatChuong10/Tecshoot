@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Tecshoot — Quản lý ảnh của bạn</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@300;400;500&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="typography.css" />
+</head>
+
+<body>
+
+  <!-- ═══════════════════════════════════════════
+       NAVIGATION
+  ═══════════════════════════════════════════ -->
+  <nav id="nav">
+    <a class="nav-logo" href="#">TEC<b>SHOOT</b></a>
+    <div class="nav-meta">
+      <span class="nav-booking-ref">#TSH-20240825-0042</span>
+      <span>Ngọc Minh — Ảnh cưới</span>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════
+       STAGE SWITCHER
+  ═══════════════════════════════════════════ -->
+  <div class="stage-switcher">
+    <button class="stage-tab active" id="tab-select" onclick="goStage('select')">
+      <div class="stage-tab-num" id="tabnum-select">1</div>
+      <div class="stage-tab-name">
+        Chọn ảnh
+        <span class="stage-tab-sub">Xem &amp; chọn ảnh ưng ý</span>
+      </div>
+    </button>
+
+    <div class="stage-arrow">→</div>
+
+    <button class="stage-tab" id="tab-approve" onclick="goStage('approve')">
+      <div class="stage-tab-num" id="tabnum-approve">2</div>
+      <div class="stage-tab-name">
+        Duyệt &amp; Nhận
+        <span class="stage-tab-sub">Xem retouch, duyệt &amp; tải về</span>
+      </div>
+    </button>
+
+    <!-- Booking stats strip -->
+    <div class="booking-strip">
+      <div class="bs-item">
+        <span class="bs-val" id="stat-selected">0</span>
+        <span class="bs-label">Đã chọn</span>
+      </div>
+      <div class="bs-item">
+        <span class="bs-val">15</span>
+        <span class="bs-label">Tối đa</span>
+      </div>
+      <div class="bs-item">
+        <span class="bs-val" id="stat-revisions">2</span>
+        <span class="bs-label">Lượt sửa</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       STAGE 1 — CHỌN ẢNH
+  ═══════════════════════════════════════════ -->
+  <div class="stage-panel active" id="stage-select">
+
+    <div class="s1-header">
+      <div class="s1-eyebrow">GIAI ĐOẠN 01 — KHÁCH HÀNG</div>
+      <h1 class="s1-title">Ảnh Chờ <em>Chọn</em></h1>
+      <p class="s1-desc">
+        Nhấn vào từng tấm ảnh để xem lớn, chọn ảnh ưng ý và để lại ghi chú retouch chi tiết.
+        Ghi chú chung chung sẽ không được chấp nhận.
+      </p>
+    </div>
+
+    <div class="s1-toolbar">
+      <button class="filter-chip on" onclick="filterGrid('all', this)">
+        Tất cả <span class="chip-badge" id="chip-all">24</span>
+      </button>
+      <button class="filter-chip" onclick="filterGrid('selected', this)">
+        Đã chọn <span class="chip-badge" id="chip-selected">0</span>
+      </button>
+      <button class="filter-chip" onclick="filterGrid('noted', this)">
+        Có ghi chú <span class="chip-badge" id="chip-noted">0</span>
+      </button>
+      <div class="toolbar-sep"></div>
+      <button class="filter-chip" id="grid-toggle-btn" onclick="toggleGridSize()">
+        🔲 Lưới nhỏ
+      </button>
+      <div class="toolbar-right">
+        <div class="selected-pill">
+          Đã chọn: <b id="footer-count">0</b> / 15
+        </div>
+      </div>
+    </div>
+
+    <div class="photo-grid-wrap">
+      <div class="photo-grid" id="photo-grid"></div>
+    </div>
+
+  </div><!-- /stage-select -->
+
+  <!-- Footer bar cố định khi có ảnh được chọn -->
+  <div class="s1-footer" id="s1-footer">
+    <div class="s1-footer-info">
+      Đã chọn <b id="footer-b">0</b> ảnh &nbsp;·&nbsp; Nhớ thêm ghi chú cho từng tấm!
+    </div>
+    <div class="s1-footer-actions">
+      <button class="btn-submit" id="btn-submit-sel" onclick="submitSelection()" disabled>
+        Gửi danh sách → Giai đoạn 2
+      </button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       STAGE 2 — DUYỆT & NHẬN
+  ═══════════════════════════════════════════ -->
+  <div class="stage-panel" id="stage-approve">
+
+    <div class="s2-header">
+      <div>
+        <div class="s2-eyebrow">GIAI ĐOẠN 02 — KHÁCH HÀNG</div>
+        <h2 class="s2-title">Duyệt <em>&amp; Nhận</em></h2>
+        <p class="s2-desc">
+          Ảnh đã được thợ retouch theo ghi chú của bạn. Duyệt từng tấm để tải về không watermark,
+          hoặc yêu cầu chỉnh sửa lại.
+        </p>
+      </div>
+      <div class="revision-badge" id="revision-badge">
+        Còn <b id="revisions-left">2</b> lượt chỉnh lại
+      </div>
+    </div>
+
+    <div class="approve-progress-bar">
+      <span class="apb-label">Tiến độ duyệt</span>
+      <div class="apb-track">
+        <div class="apb-fill" id="apb-fill" style="width:0%"></div>
+      </div>
+      <span class="apb-count" id="apb-count">0 / 0 ảnh</span>
+    </div>
+
+    <div class="approve-grid-wrap">
+      <div class="approve-grid" id="approve-grid"></div>
+    </div>
+
+    <div class="s2-action-bar">
+      <div class="s2-action-info">
+        Đã duyệt <b id="approved-count">0</b> ảnh
+      </div>
+      <div class="s2-action-btns">
+        <button class="btn-request-revision" id="btn-rev" onclick="openRevisionModal()">
+          ↩ Yêu cầu chỉnh sửa lại
+        </button>
+        <button class="btn-approve-all" onclick="approveAll()">
+          ✓ Duyệt tất cả
+        </button>
+        <button class="btn-download-all" id="btn-dl" onclick="openDownloadModal()">
+          ⬇ Tải về tất cả (ZIP)
+        </button>
+      </div>
+    </div>
+
+  </div><!-- /stage-approve -->
+
+  <!-- ═══════════════════════════════════════════
+       LIGHTBOX
+  ═══════════════════════════════════════════ -->
+  <div class="lightbox" id="lightbox">
+    <div class="lb-backdrop" onclick="closeLB()"></div>
+    <div class="lb-box">
+
+      <!-- Phần ảnh -->
+      <div class="lb-visual">
+        <button class="lb-close" onclick="closeLB()">✕</button>
+        <button class="lb-nav-btn lb-prev" onclick="navLB(-1)">‹</button>
+        <button class="lb-nav-btn lb-next" onclick="navLB(1)">›</button>
+        <div class="lb-photo-display" id="lb-display"></div>
+        <div class="lb-wm" id="lb-wm">TECSHOOT · PREVIEW ONLY</div>
+        <div class="lb-select-btn-wrap">
+          <button class="lb-select-btn" id="lb-sel-btn" onclick="toggleLBSelect()">
+            ✓ Chọn ảnh này
+          </button>
+        </div>
+      </div>
+
+      <!-- Panel ghi chú -->
+      <div class="lb-panel">
+        <div class="lb-panel-head">
+          <div>
+            <span class="lb-panel-num" id="lb-num">01</span>
+            <span class="lb-panel-total" id="lb-tot">/ 24</span>
+          </div>
+          <div class="lb-panel-id" id="lb-id">DSC_0001.jpg</div>
+        </div>
+        <div class="lb-notes-wrap">
+          <div class="lb-notes-label">Ghi chú Retouch</div>
+          <div class="note-list" id="lb-note-list">
+            <p class="note-no-content">Chưa có ghi chú. Chọn ảnh và thêm ghi chú bên dưới.</p>
+          </div>
+          <!-- Quick-pick chips -->
+          <div class="quick-chips" id="quick-chips">
+            <button class="qchip" onclick="addChip(this,'Bóp mặt / dáng')">Bóp mặt / dáng</button>
+            <button class="qchip" onclick="addChip(this,'Tone màu ấm hơn')">Tone ấm hơn</button>
+            <button class="qchip" onclick="addChip(this,'Tone màu lạnh hơn')">Tone lạnh hơn</button>
+            <button class="qchip" onclick="addChip(this,'Làm mịn da')">Làm mịn da</button>
+            <button class="qchip" onclick="addChip(this,'Xóa rác nền')">Xóa rác nền</button>
+            <button class="qchip" onclick="addChip(this,'Xóa bóng đổ dưới mắt')">Xóa bóng mắt</button>
+            <button class="qchip" onclick="addChip(this,'Sáng vùng mặt')">Sáng vùng mặt</button>
+            <button class="qchip" onclick="addChip(this,'Tăng độ tương phản')">Tăng tương phản</button>
+          </div>
+          <!-- Textarea tự do -->
+          <div class="note-input-wrap">
+            <textarea class="note-textarea" id="note-ta" rows="3"
+              placeholder='VD: "Bóp mặt nhẹ bên trái", "Xóa vật thể góc phải"...' maxlength="200"
+              oninput="validateNote(this)"
+              onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();addNote()}"></textarea>
+            <div class="note-input-foot">
+              <span class="note-chars" id="note-chars">0/200</span>
+              <div class="note-warn" id="note-warn">⚠ Ghi chú quá chung! Hãy mô tả cụ thể hơn.</div>
+              <button class="btn-add-note" id="btn-add-note" onclick="addNote()" disabled>Thêm</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       MODAL — Yêu cầu chỉnh sửa lại
+  ═══════════════════════════════════════════ -->
+  <div class="modal-overlay" id="rev-modal">
+    <div class="modal-box">
+      <h3>Yêu Cầu Chỉnh Sửa Lại</h3>
+      <p>Mô tả chi tiết để thợ biết cần chỉnh gì. Tránh ghi chung chung như "chỉnh đẹp hơn".</p>
+      <textarea id="rev-notes" rows="5"
+        placeholder="VD: Tấm 3, 7, 12 — tone còn hơi lạnh, cần ấm hơn. Tấm 5 — xóa vật thể góc phải..."></textarea>
+      <div class="modal-actions">
+        <button class="btn-ghost" onclick="closeRevisionModal()">Hủy</button>
+        <button class="btn-primary" onclick="confirmRevision()">Gửi yêu cầu</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       MODAL — Download hoàn tất
+  ═══════════════════════════════════════════ -->
+  <div class="download-modal" id="dl-modal">
+    <div class="dm-box">
+      <div class="dm-icon">✓</div>
+      <h3>Bộ ảnh đã được duyệt!</h3>
+      <p>Watermark đã được gỡ bỏ. Tải về ảnh gốc chất lượng cao không giới hạn.</p>
+      <button class="btn-dl-final" onclick="doDownload()">
+        ⬇ Tải về toàn bộ ảnh (ZIP · ~120 MB)
+      </button>
+      <button class="btn-ghost" style="width:100%;margin-top:10px" onclick="closeDLModal()">Đóng</button>
+    </div>
+  </div>
+
+  <!-- Toast container -->
+  <div id="toast-stack"></div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

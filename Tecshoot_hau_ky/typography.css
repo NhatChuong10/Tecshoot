@@ -1,0 +1,274 @@
+/* ============================================================
+   TECSHOOT — TYPOGRAPHY CONTROL SYSTEM
+   
+   👉 Chỉ chỉnh sửa phần này để thay đổi font & cỡ chữ
+      toàn bộ website sẽ tự động cập nhật theo.
+   ============================================================ */
+
+/* ────────────────────────────────────────────────────────────
+   BƯỚC 1: CHỌN FONT
+   Thay tên font vào 3 biến dưới đây.
+   
+   Gợi ý font đẹp (Google Fonts — copy tên chính xác):
+   
+   Font tiêu đề (--font-heading):
+     "Playfair Display"  → sang trọng, serif cổ điển  ✅ đang dùng
+     "Cormorant Garamond"→ thanh lịch, mỏng
+     "Libre Baskerville" → đậm, dễ đọc
+     "Lora"              → ấm áp, hiện đại
+     "DM Serif Display"  → mạnh mẽ, editorial
+   
+   Font nội dung (--font-body):
+     "DM Sans"           → hiện đại, tròn trịa         ✅ đang dùng
+     "Nunito"            → thân thiện, bo góc
+     "Outfit"            → gọn, kỹ thuật
+     "Plus Jakarta Sans" → chuyên nghiệp
+     "Figtree"           → sạch, đọc tốt
+   
+   Font mã/số (--font-mono):
+     "DM Mono"           → nhẹ, tinh tế               ✅ đang dùng
+     "JetBrains Mono"    → lập trình viên
+     "Fira Code"         → có ligature
+     "IBM Plex Mono"     → IBM style
+──────────────────────────────────────────────────────────── */
+:root {
+  --font-heading : "Playfair Display", Georgia, serif;
+  --font-body    : "DM Sans", system-ui, sans-serif;
+  --font-mono    : "DM Mono", "Courier New", monospace;
+}
+
+/* ────────────────────────────────────────────────────────────
+   BƯỚC 2: CHỈNH CỠ CHỮ GỐC (Base size)
+   
+   --font-base  = cỡ chữ mặc định của toàn trang (thân bài)
+                  Thường dùng: 13px | 14px | 15px | 16px
+   
+   Tất cả cỡ chữ khác tự động tính theo tỉ lệ từ giá trị này.
+   Tăng --font-base lên → mọi thứ to hơn.
+   Giảm --font-base xuống → mọi thứ nhỏ hơn.
+──────────────────────────────────────────────────────────── */
+:root {
+  --font-base    : 14px;   /* ← ĐỔI GIÁ TRỊ NÀY ĐỂ THAY ĐỔI TOÀN TRANG */
+}
+
+/* ────────────────────────────────────────────────────────────
+   BƯỚC 3: TINH CHỈNH TỪNG NHÓM CHỮ (tuỳ chọn)
+   
+   Các biến dưới đây dùng calc() để tự động tỉ lệ theo --font-base.
+   Bạn cũng có thể gán giá trị cố định (vd: 11px) nếu muốn.
+──────────────────────────────────────────────────────────── */
+:root {
+  /* ── Nhóm tiêu đề lớn (h1, h2 trang chính) ── */
+  --text-display   : clamp(24px, calc(var(--font-base) * 2.57), 36px);
+                     /* tự scale: base 14px → ~36px; base 13px → ~33px */
+
+  /* ── Tiêu đề section ── */
+  --text-heading   : calc(var(--font-base) * 1.57);   /* ~22px */
+
+  /* ── Nội dung thông thường ── */
+  --text-body      : var(--font-base);                /* = --font-base */
+
+  /* ── Nội dung nhỏ (mô tả, ghi chú phụ) ── */
+  --text-sm        : calc(var(--font-base) * 0.93);   /* ~13px */
+
+  /* ── Chú thích rất nhỏ (label, badge, meta) ── */
+  --text-xs        : calc(var(--font-base) * 0.79);   /* ~11px */
+
+  /* ── Cực nhỏ (watermark, tag ảnh) ── */
+  --text-xxs       : calc(var(--font-base) * 0.64);   /* ~9px */
+
+  /* ── Nút bấm ── */
+  --text-btn-lg    : calc(var(--font-base) * 1.0);    /* ~14px */
+  --text-btn-md    : calc(var(--font-base) * 0.93);   /* ~13px */
+  --text-btn-sm    : calc(var(--font-base) * 0.79);   /* ~11px */
+
+  /* ── Logo ── */
+  --text-logo      : calc(var(--font-base) * 1.43);   /* ~20px */
+
+  /* ── Số đếm lớn (stats, lightbox số ảnh) ── */
+  --text-display-num: calc(var(--font-base) * 2.57);  /* ~36px */
+
+  /* ── Khoảng cách dòng ── */
+  --line-height-tight : 1.15;
+  --line-height-base  : 1.6;
+  --line-height-loose : 1.85;
+
+  /* ── Letter spacing ── */
+  --tracking-wide  : 0.05em;   /* dùng cho label, eyebrow */
+  --tracking-wider : 0.18em;   /* dùng cho tag rất nhỏ */
+}
+
+/* ============================================================
+   ÁP DỤNG — ĐỪNG SỬA PHẦN NÀY (trừ khi muốn tinh chỉnh sâu)
+   ============================================================ */
+
+/* Body — font nền toàn trang */
+body {
+  font-family : var(--font-body);
+  font-size   : var(--font-base);
+  line-height : var(--line-height-base);
+}
+
+/* ── Tiêu đề h1–h6 ── */
+h1, h2, h3,
+.s1-title, .s2-title,
+.stage-title {
+  font-family : var(--font-heading);
+  line-height : var(--line-height-tight);
+}
+h1, .s1-title { font-size: var(--text-display); }
+h2, .s2-title { font-size: var(--text-heading); }
+h3             { font-size: calc(var(--font-base) * 1.14); } /* ~16px */
+h4, h5, h6    { font-family: var(--font-body); }
+
+/* ── Logo nav ── */
+.nav-logo { font-family: var(--font-heading); font-size: var(--text-logo); }
+
+/* ── Nội dung thông thường ── */
+p,
+.s1-desc,
+.s2-desc,
+.stage-desc,
+.note-text,
+.notif-msg,
+.modal-box p,
+.dm-box p {
+  font-family : var(--font-body);
+  font-size   : var(--text-sm);
+  line-height : var(--line-height-loose);
+}
+
+/* ── Label nhỏ / eyebrow ── */
+.s1-eyebrow,
+.s2-eyebrow,
+.stage-eyebrow,
+.sidebar-label,
+.bs-label,
+.apb-label,
+.pc-id,
+.ac-id,
+.lb-panel-id,
+.session-info span {
+  font-family    : var(--font-mono);
+  font-size      : var(--text-xxs);
+  letter-spacing : var(--tracking-wider);
+  text-transform : uppercase;
+}
+
+/* ── Mono / code / badge ── */
+.nav-booking-ref,
+.stage-tab-sub,
+.chip-badge,
+.selected-pill,
+.note-chars,
+.note-warn,
+.revision-badge,
+.apb-count,
+.ac-note-tag,
+.qchip,
+.filter-chip,
+.lb-panel-total,
+.session-stage,
+.package-detail {
+  font-family : var(--font-mono);
+  font-size   : var(--text-xs);
+}
+
+/* ── Stage tab tên ── */
+.stage-tab { font-family: var(--font-body); font-size: var(--text-sm); }
+.stage-tab-num {
+  font-family : var(--font-mono);
+  font-size   : var(--text-xs);
+}
+
+/* ── Số lớn (stats strip, lightbox) ── */
+.bs-val,
+.lb-panel-num,
+.summary-num {
+  font-family : var(--font-heading);
+  font-size   : var(--text-display-num);
+}
+
+/* ── Nút bấm ── */
+.btn-submit,
+.btn-approve-all,
+.btn-dl-final,
+.btn-download-all,
+.btn-primary,
+.btn-complete-session,
+.btn-complete-edit,
+.btn-approve-all {
+  font-family : var(--font-body);
+  font-size   : var(--text-btn-lg);
+}
+.btn-ghost,
+.btn-request-revision,
+.btn-submit-selection,
+.btn-role-toggle {
+  font-family : var(--font-body);
+  font-size   : var(--text-btn-md);
+}
+.btn-add-note,
+.btn-ac-approve,
+.btn-ac-reject,
+.btn-ei-upload,
+.btn-ei-done,
+.btn-clear-queue,
+.btn-upload-browse {
+  font-family : var(--font-body);
+  font-size   : var(--text-btn-sm);
+}
+
+/* ── Tên trong sidebar ── */
+.session-info strong,
+.package-name {
+  font-family : var(--font-body);
+  font-size   : var(--text-sm);
+}
+
+/* ── Ghi chú trong lightbox ── */
+.lb-notes-label {
+  font-family    : var(--font-mono);
+  font-size      : var(--text-xs);
+  letter-spacing : var(--tracking-wide);
+}
+.note-no-content { font-family: var(--font-body); font-size: var(--text-xs); }
+
+/* ── Footer sticky ── */
+.s1-footer-info { font-family: var(--font-body); font-size: var(--text-sm); }
+.s2-action-info { font-family: var(--font-body); font-size: var(--text-sm); }
+
+/* ── Toast ── */
+.toast-title { font-family: var(--font-body); font-size: var(--text-sm); }
+.toast-body  { font-family: var(--font-body); font-size: var(--text-xs); }
+
+/* ── Modal ── */
+.modal-box h3,
+.dm-box h3 {
+  font-family : var(--font-heading);
+  font-size   : calc(var(--font-base) * 1.57);
+}
+.modal-box textarea,
+#revision-notes,
+#rev-notes,
+.note-textarea {
+  font-family : var(--font-body);
+  font-size   : var(--text-sm);
+}
+
+/* ── Input & select ── */
+input, select, textarea {
+  font-family : var(--font-body);
+  font-size   : var(--text-sm);
+}
+
+/* ── Watermark text ── */
+.pc-wm, .ac-wm, .lb-wm {
+  font-family    : var(--font-mono);
+  font-size      : var(--text-xxs);
+  letter-spacing : var(--tracking-wider);
+}
+
+/* ── Notification panel ── */
+.notif-header h3 { font-family: var(--font-body); font-size: var(--text-sm); font-weight: 700; }
+.notif-time       { font-family: var(--font-mono); font-size: var(--text-xxs); }
