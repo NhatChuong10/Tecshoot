@@ -633,7 +633,11 @@ function renderLB_PP() {
   disp.style.backgroundPosition = 'center';
   disp.style.backgroundRepeat = 'no-repeat';
   disp.style.position = 'relative';
-  disp.innerHTML = '<div class="watermark-overlay"></div>';
+  if (typeof isPaidRemaining !== 'undefined' && isPaidRemaining) {
+    disp.innerHTML = '';
+  } else {
+    disp.innerHTML = '<div class="watermark-overlay"></div>';
+  }
   document.getElementById('lb-num').textContent = String(lbIdx_PP + 1).padStart(2, '0');
   document.getElementById('lb-tot').textContent = `/ ${photos_PP.length}`;
   document.getElementById('lb-id').textContent = p.id;
@@ -736,7 +740,7 @@ function renderApproveGrid_PP() {
     const noteTagsHTML = p.notes.map(n => `<span class="ac-note-tag">${n}</span>`).join('');
     card.innerHTML = `
       <div class="ac-img" style="background-image:url('${p.src}'); background-size:cover; background-position:center; position:relative;">
-        <div class="watermark-overlay" id="ac-wm-${i}"></div>
+        ${(typeof isPaidRemaining !== 'undefined' && isPaidRemaining) ? '' : `<div class="watermark-overlay" id="ac-wm-${i}"></div>`}
         <div class="ac-approved-overlay">✓</div>
       </div>
       ${noteTagsHTML ? `<div class="ac-notes-preview">${noteTagsHTML}</div>` : ''}
@@ -767,9 +771,47 @@ function approveOne_PP(i) {
   toast_PP('✓ Đã duyệt ảnh!', 'Watermark đã gỡ — sẵn sàng tải về.', 'success');
   const total = document.querySelectorAll('.approve-card').length;
   if (approvedSet_PP.size >= total) {
-    document.getElementById('btn-dl').classList.add('visible');
-    toast_PP('🎉 Đã duyệt toàn bộ!', 'Nhấn "Tải về tất cả" để nhận ảnh gốc.', 'success');
+    if (typeof isPaidRemaining === 'undefined' || !isPaidRemaining) {
+      const payBtn = document.getElementById('btn-pay-remaining');
+      if (payBtn) payBtn.style.display = 'inline-block';
+      toast_PP('🎉 Đã duyệt toàn bộ!', 'Vui lòng thanh toán phần còn lại để tải ảnh.', 'info');
+    } else {
+      document.getElementById('btn-dl').classList.add('visible');
+      toast_PP('🎉 Đã duyệt toàn bộ!', 'Nhấn "Tải về tất cả" để nhận ảnh gốc.', 'success');
+    }
   }
+}
+
+let isPaidRemaining = false;
+
+function openRemainingPaymentModal() {
+  openModal('remainingPaymentModal');
+}
+
+function processRemainingPayment() {
+  const btn = document.getElementById('btnProcessPayment');
+  if(!btn) return;
+  const original = btn.textContent;
+  btn.textContent = 'Đang xử lý...';
+  
+  setTimeout(() => {
+    isPaidRemaining = true;
+    closeModal('remainingPaymentModal');
+    
+    // Gỡ watermark tất cả các ảnh
+    document.querySelectorAll('.watermark-overlay').forEach(el => el.style.display = 'none');
+    const lbWm = document.getElementById('lb-wm');
+    if (lbWm) lbWm.style.display = 'none';
+    
+    // Ẩn nút thanh toán, hiện nút tải xuống
+    const payBtn = document.getElementById('btn-pay-remaining');
+    if(payBtn) payBtn.style.display = 'none';
+    const dlBtn = document.getElementById('btn-dl');
+    if(dlBtn) dlBtn.classList.add('visible');
+    
+    toast_PP('✨ Thanh toán thành công!', 'Watermark đã được gỡ bỏ. Bạn có thể tải ảnh gốc.', 'success');
+    btn.textContent = original;
+  }, 1500);
 }
 
 function approveAll() {
@@ -1313,4 +1355,76 @@ style.innerHTML = `
 }
 `;
 document.head.appendChild(style);
+
+// ===== BOOKING WORKFLOW SIMULATION =====
+function calculateBookingTotal() {
+  const packageSelect = document.getElementById('bookingPackage');
+  if(!packageSelect) return;
+  const packagePrice = parseInt(packageSelect.value) || 0;
+  
+  let addonPrice = 0;
+  document.querySelectorAll('input[name="addon"]:checked').forEach(cb => {
+    if(cb.closest('#bookingModal')) {
+      addonPrice += parseInt(cb.value) || 0;
+    }
+  });
+
+  const platformFee = Math.round((packagePrice + addonPrice) * 0.08);
+  const total = packagePrice + addonPrice + platformFee;
+
+  let depositPercent = 0.4; // > 2tr = 40%
+  let percentText = "40%";
+
+  if (total < 1000000) {
+    depositPercent = 1.0;
+    percentText = "100%";
+  } else if (total >= 1000000 && total <= 2000000) {
+    depositPercent = 0.5;
+    percentText = "50%";
+  }
+
+  const depositAmount = Math.round(total * depositPercent);
+
+  // Update UI
+  const feeEl = document.getElementById('bookingPhotographerFee');
+  if(feeEl) {
+    feeEl.textContent = formatPrice(packagePrice);
+    document.getElementById('bookingAddonFee').textContent = formatPrice(addonPrice);
+    document.getElementById('bookingPlatformFee').textContent = formatPrice(platformFee);
+    document.getElementById('bookingTotalFee').textContent = formatPrice(total);
+    
+    document.getElementById('bookingDepositPercent').textContent = percentText;
+    document.getElementById('bookingDepositFee').textContent = formatPrice(depositAmount);
+  }
+}
+
+function toggleSubmitBooking() {
+  const isChecked = document.getElementById('bookingTerms').checked;
+  const btn = document.getElementById('btnSubmitBooking');
+  if (isChecked) {
+    btn.style.opacity = '1';
+    btn.style.pointerEvents = 'auto';
+  } else {
+    btn.style.opacity = '0.5';
+    btn.style.pointerEvents = 'none';
+  }
+}
+
+function submitBooking() {
+  const btn = document.getElementById('btnSubmitBooking');
+  const original = btn.textContent;
+  btn.textContent = 'Đang xử lý...';
+  btn.style.opacity = '0.7';
+  btn.style.pointerEvents = 'none';
+
+  setTimeout(() => {
+    closeModal('bookingModal');
+    toast_PP('✅ Đặt lịch thành công!', 'Tiền cọc đã được chuyển vào ví trung gian an toàn.', 'success');
+    btn.textContent = original;
+    btn.style.opacity = '1';
+    btn.style.pointerEvents = 'auto';
+    document.getElementById('bookingTerms').checked = false;
+    toggleSubmitBooking();
+  }, 1500);
+}
 

@@ -143,17 +143,17 @@ nav.scrolled {
 
 .nav-links a {
   text-decoration: none;
-  font-size: 13px;
+  font-size: 16px;
   font-weight: 500;
   letter-spacing: 0.5px;
   transition: color 0.2s;
   /* Đổi màu chữ Menu thành cam Persimmon */
-  color: var(--persimmon); 
+  color: var(--army); 
 }
 
 /* Đổi màu chữ khi rê chuột vào để tương tác tốt hơn */
 .nav-links a:hover { 
-  color: var(--army); 
+  color: var(--persimmon); 
 }
 
 .nav-cta {
@@ -594,6 +594,25 @@ nav.scrolled {
     margin-bottom: 4px;
   }
 
+  .member-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    font-family: 'DM Sans', sans-serif;
+    letter-spacing: 0.3px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  }
+
+  .member-badge.silver {
+    background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
+    color: #4a4a4a;
+    border: 1px solid #d4d4d4;
+  }
+
   .featured .card-name { font-size: 26px; }
 
   .card-specialty {
@@ -890,7 +909,7 @@ nav.scrolled {
   .gallery-thumb:hover .heart-btn { opacity: 1; }
   .gallery-thumb.selected .heart-btn { opacity: 1; color: #e06060; }
 
-  .watermark-overlay {
+  .watermark-overlay, .lb-wm {
     position: absolute;
     inset: 0;
     display: flex;
@@ -1724,8 +1743,8 @@ img {
 
 /* TĂNG KÍCH THƯỚC CHỮ THANH NAVBAR */
 #mainNav .nav-links li a {
-    font-size: 14px; /* Hạ kích thước chữ xuống một chút để vừa vặn trên màn hình nhỏ */
-    font-weight: 500;
+    font-size: 16px; 
+    font-weight: 600;
     letter-spacing: 0.5px;
 }
 
@@ -3562,3 +3581,5 @@ img {
 .about-story-container .section-eyebrow {
   text-align: center;
 }
+
+.lb-wm { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-45deg); color: rgba(255,255,255,0.4); font-size: 64px; font-weight: 900; pointer-events: none; white-space: nowrap; letter-spacing: 5px; z-index: 5; }
